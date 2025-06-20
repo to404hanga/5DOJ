@@ -1,2 +1,5 @@
 *.exe
 *.sh
+
+*.yaml
+!*.template.yaml

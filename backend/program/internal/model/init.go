@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/to404hanga/5DOJ/judger/internal/global"
+	"github.com/to404hanga/5DOJ/program/internal/global"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

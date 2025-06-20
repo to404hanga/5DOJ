@@ -1,0 +1,24 @@
+{
+    "cmd": [{
+        "args": ["%s"],
+        "env": ["PATH=/usr/bin:/bin"],
+        "files": [{
+            "content": "%s"
+        }, {
+            "name": "stdout",
+            "max": 10240
+        }, {
+            "name": "stderr",
+            "max": 10240
+        }],
+        "cpuLimit": 10000000000,
+        "memoryLimit": %d,
+        "timeLimit": %d,
+        "procLimit": 50,
+        "copyIn": {
+            "%s": {
+                "fileId": "%s"
+            }
+        }
+    }]
+}

@@ -16,6 +16,8 @@ import (
 var (
 	//go:embed json/compileRequestTemplate.json
 	compileRequestTemplate string
+	//go:embed json/runRequestTemplate.json
+	runRequestTemplate string
 )
 
 type JudgerService struct {
@@ -60,4 +62,33 @@ func (j *JudgerService) Compile(ctx context.Context, compiler domain.Compiler, f
 	}
 
 	return result[0].FileIds[filenameWithoutExtension], nil
+}
+
+func (j *JudgerService) Run(ctx context.Context, filenameWithoutExtension, fileId, input string, timeLimit, memoryLimit int) (output string, err error) {
+	compilerRequest := fmt.Sprintf(runRequestTemplate, filenameWithoutExtension, input, memoryLimit, timeLimit*2, filenameWithoutExtension, fileId)
+
+	req, _ := http.NewRequest("POST", j.baseUrl+"/run", strings.NewReader(compilerRequest))
+	req.Header.Add("Content-Type", "application/json")
+
+	resp, err := j.client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
+	var result []domain.Result
+	if err := json.Unmarshal(body, &result); err != nil {
+		return "", err
+	}
+
+	if result[0].Status != domain.StatusAccepted {
+		return "", fmt.Errorf("run failed: %s, fileId: %s", result[0].Status, fileId)
+	}
+
+	return result[0].Files["stdout"], nil
 }

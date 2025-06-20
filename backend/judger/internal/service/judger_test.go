@@ -74,3 +74,28 @@ func TestRun(t *testing.T) {
 		})
 	}
 }
+
+func TestDelete(t *testing.T) {
+	judger := InitJudger()
+
+	testcases := []struct {
+		Name   string
+		FileId string
+	}{
+		{
+			Name:   "删除 C++ 代码",
+			FileId: "NGM5LGZU",
+		},
+	}
+
+	for _, testcase := range testcases {
+		t.Run(testcase.Name, func(t *testing.T) {
+			err := judger.Delete(context.Background(), testcase.FileId)
+			if err != nil {
+				t.Errorf("删除失败: %v", err)
+				return
+			}
+			t.Logf("删除成功: %s", testcase.FileId)
+		})
+	}
+}

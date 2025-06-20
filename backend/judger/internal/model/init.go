@@ -26,6 +26,10 @@ func InitMongoDB() error {
 			Keys:    bson.M{"program_id": 1},
 			Options: options.Index().SetUnique(true),
 		},
+		{
+			Keys:    bson.M{"test_cases.id": "text"},
+			Options: options.Index().SetUnique(true),
+		},
 	}); err != nil {
 		return err
 	}

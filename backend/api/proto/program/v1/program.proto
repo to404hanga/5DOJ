@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package program.v1;
+option go_package = "program/v1;programv1";
+
+// import "google/protobuf/timestamp.proto";
+
+service ProgramService {
+    rpc CreateProgram (CreateProgramRequest) returns (CreateProgramResponse);
+    rpc AppendProgramTestCase (AppendProgramTestCaseRequest) returns (AppendProgramTestCaseResponse);
+    rpc UpdateTestCaseByProgramIdAndTestCaseId (UpdateTestCaseByProgramIdAndTestCaseIdRequest) returns (UpdateTestCaseByProgramIdAndTestCaseIdResponse);
+}
+
+message AppendProgramTestCaseRequest {
+    uint64 programId = 1;
+    uint64 operator = 2;
+    string input = 3;
+    string expected = 4;
+}
+
+message AppendProgramTestCaseResponse {
+    int32 testCaseNum = 1;
+    string testCaseId = 2;
+}
+
+message CreateProgramRequest {
+    string title = 1;
+    string content = 2;
+    uint64 createdBy = 3;
+    int32 level = 4;
+    uint64 timeLimit = 5;
+    uint64 memoryLimit = 6;
+    repeated string tags = 7;
+}
+
+message CreateProgramResponse {
+    uint64 programId = 1;
+}

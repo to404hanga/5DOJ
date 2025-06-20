@@ -94,3 +94,9 @@ func (j *JudgerService) Run(ctx context.Context, filenameWithoutExtension, fileI
 
 	return result[0].Files["stdout"], result[0].Time, result[0].Memory, nil
 }
+
+func (j *JudgerService) Delete(ctx context.Context, fileId string) (err error) {
+	req, _ := http.NewRequest("DELETE", j.baseUrl+"/file/"+fileId, nil)
+	_, err = j.client.Do(req)
+	return err
+}

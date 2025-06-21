@@ -167,13 +167,15 @@ type GetProgramByProgramIdResponse struct {
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	CreatedBy     uint64                 `protobuf:"varint,4,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
-	CreatedByName string                 `protobuf:"bytes,5,opt,name=createdByName,proto3" json:"createdByName,omitempty"`
-	Level         string                 `protobuf:"bytes,6,opt,name=level,proto3" json:"level,omitempty"`
-	TimeLimit     uint64                 `protobuf:"varint,7,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
-	MemoryLimit   uint64                 `protobuf:"varint,8,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
-	Tags          []string               `protobuf:"bytes,9,rep,name=tags,proto3" json:"tags,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,10,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,11,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	Creator       string                 `protobuf:"bytes,5,opt,name=creator,proto3" json:"creator,omitempty"`
+	UpdatedBy     uint64                 `protobuf:"varint,6,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	Updator       string                 `protobuf:"bytes,7,opt,name=updator,proto3" json:"updator,omitempty"`
+	Level         string                 `protobuf:"bytes,8,opt,name=level,proto3" json:"level,omitempty"`
+	TimeLimit     uint64                 `protobuf:"varint,9,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
+	MemoryLimit   uint64                 `protobuf:"varint,10,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
+	Tags          []string               `protobuf:"bytes,11,rep,name=tags,proto3" json:"tags,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,12,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,13,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -236,9 +238,23 @@ func (x *GetProgramByProgramIdResponse) GetCreatedBy() uint64 {
 	return 0
 }
 
-func (x *GetProgramByProgramIdResponse) GetCreatedByName() string {
+func (x *GetProgramByProgramIdResponse) GetCreator() string {
 	if x != nil {
-		return x.CreatedByName
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *GetProgramByProgramIdResponse) GetUpdatedBy() uint64 {
+	if x != nil {
+		return x.UpdatedBy
+	}
+	return 0
+}
+
+func (x *GetProgramByProgramIdResponse) GetUpdator() string {
+	if x != nil {
+		return x.Updator
 	}
 	return ""
 }
@@ -761,20 +777,22 @@ const file_program_v1_program_proto_rawDesc = "" +
 	"\x06inputs\x18\x01 \x03(\tR\x06inputs\x12\x1c\n" +
 	"\texpecteds\x18\x02 \x03(\tR\texpecteds\"<\n" +
 	"\x1cGetProgramByProgramIdRequest\x12\x1c\n" +
-	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"\xd7\x02\n" +
+	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"\x83\x03\n" +
 	"\x1dGetProgramByProgramIdResponse\x12\x1c\n" +
 	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\x12\x1c\n" +
-	"\tcreatedBy\x18\x04 \x01(\x04R\tcreatedBy\x12$\n" +
-	"\rcreatedByName\x18\x05 \x01(\tR\rcreatedByName\x12\x14\n" +
-	"\x05level\x18\x06 \x01(\tR\x05level\x12\x1c\n" +
-	"\ttimeLimit\x18\a \x01(\x04R\ttimeLimit\x12 \n" +
-	"\vmemoryLimit\x18\b \x01(\x04R\vmemoryLimit\x12\x12\n" +
-	"\x04tags\x18\t \x03(\tR\x04tags\x12\x1c\n" +
-	"\tcreatedAt\x18\n" +
-	" \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt\"\x89\x01\n" +
+	"\tcreatedBy\x18\x04 \x01(\x04R\tcreatedBy\x12\x18\n" +
+	"\acreator\x18\x05 \x01(\tR\acreator\x12\x1c\n" +
+	"\tupdatedBy\x18\x06 \x01(\x04R\tupdatedBy\x12\x18\n" +
+	"\aupdator\x18\a \x01(\tR\aupdator\x12\x14\n" +
+	"\x05level\x18\b \x01(\tR\x05level\x12\x1c\n" +
+	"\ttimeLimit\x18\t \x01(\x04R\ttimeLimit\x12 \n" +
+	"\vmemoryLimit\x18\n" +
+	" \x01(\x04R\vmemoryLimit\x12\x12\n" +
+	"\x04tags\x18\v \x03(\tR\x04tags\x12\x1c\n" +
+	"\tcreatedAt\x18\f \x01(\tR\tcreatedAt\x12\x1c\n" +
+	"\tupdatedAt\x18\r \x01(\tR\tupdatedAt\"\x89\x01\n" +
 	"-DeleteTestCaseByProgramIdAndTestCaseIdRequest\x12\x1c\n" +
 	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\x12\x1e\n" +
 	"\n" +

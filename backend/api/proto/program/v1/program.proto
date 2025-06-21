@@ -61,8 +61,8 @@ message GetProgramByProgramIdResponse {
     uint64 updatedBy = 6;
     string updator = 7;
     string level = 8;
-    uint64 timeLimit = 9;
-    uint64 memoryLimit = 10;
+    uint64 timeLimitMS = 9;
+    uint64 memoryLimitMB = 10;
     repeated string tags = 11;
     string createdAt = 12;
     string updatedAt = 13;
@@ -107,8 +107,8 @@ message CreateProgramRequest {
     string content = 2;
     uint64 createdBy = 3;
     int32 level = 4;
-    uint64 timeLimit = 5;
-    uint64 memoryLimit = 6;
+    uint64 timeLimitMS = 5;
+    uint64 memoryLimitMB = 6;
     repeated string tags = 7;
 }
 

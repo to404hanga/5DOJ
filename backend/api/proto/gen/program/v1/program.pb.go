@@ -399,8 +399,8 @@ type GetProgramByProgramIdResponse struct {
 	UpdatedBy     uint64                 `protobuf:"varint,6,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	Updator       string                 `protobuf:"bytes,7,opt,name=updator,proto3" json:"updator,omitempty"`
 	Level         string                 `protobuf:"bytes,8,opt,name=level,proto3" json:"level,omitempty"`
-	TimeLimit     uint64                 `protobuf:"varint,9,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
-	MemoryLimit   uint64                 `protobuf:"varint,10,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
+	TimeLimitMS   uint64                 `protobuf:"varint,9,opt,name=timeLimitMS,proto3" json:"timeLimitMS,omitempty"`
+	MemoryLimitMB uint64                 `protobuf:"varint,10,opt,name=memoryLimitMB,proto3" json:"memoryLimitMB,omitempty"`
 	Tags          []string               `protobuf:"bytes,11,rep,name=tags,proto3" json:"tags,omitempty"`
 	CreatedAt     string                 `protobuf:"bytes,12,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	UpdatedAt     string                 `protobuf:"bytes,13,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
@@ -494,16 +494,16 @@ func (x *GetProgramByProgramIdResponse) GetLevel() string {
 	return ""
 }
 
-func (x *GetProgramByProgramIdResponse) GetTimeLimit() uint64 {
+func (x *GetProgramByProgramIdResponse) GetTimeLimitMS() uint64 {
 	if x != nil {
-		return x.TimeLimit
+		return x.TimeLimitMS
 	}
 	return 0
 }
 
-func (x *GetProgramByProgramIdResponse) GetMemoryLimit() uint64 {
+func (x *GetProgramByProgramIdResponse) GetMemoryLimitMB() uint64 {
 	if x != nil {
-		return x.MemoryLimit
+		return x.MemoryLimitMB
 	}
 	return 0
 }
@@ -863,8 +863,8 @@ type CreateProgramRequest struct {
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	CreatedBy     uint64                 `protobuf:"varint,3,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
 	Level         int32                  `protobuf:"varint,4,opt,name=level,proto3" json:"level,omitempty"`
-	TimeLimit     uint64                 `protobuf:"varint,5,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
-	MemoryLimit   uint64                 `protobuf:"varint,6,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
+	TimeLimitMS   uint64                 `protobuf:"varint,5,opt,name=timeLimitMS,proto3" json:"timeLimitMS,omitempty"`
+	MemoryLimitMB uint64                 `protobuf:"varint,6,opt,name=memoryLimitMB,proto3" json:"memoryLimitMB,omitempty"`
 	Tags          []string               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -928,16 +928,16 @@ func (x *CreateProgramRequest) GetLevel() int32 {
 	return 0
 }
 
-func (x *CreateProgramRequest) GetTimeLimit() uint64 {
+func (x *CreateProgramRequest) GetTimeLimitMS() uint64 {
 	if x != nil {
-		return x.TimeLimit
+		return x.TimeLimitMS
 	}
 	return 0
 }
 
-func (x *CreateProgramRequest) GetMemoryLimit() uint64 {
+func (x *CreateProgramRequest) GetMemoryLimitMB() uint64 {
 	if x != nil {
-		return x.MemoryLimit
+		return x.MemoryLimitMB
 	}
 	return 0
 }
@@ -1018,7 +1018,7 @@ const file_program_v1_program_proto_rawDesc = "" +
 	"\x1fGetTestCasesByProgramIdResponse\x122\n" +
 	"\ttestCases\x18\x01 \x03(\v2\x14.program.v1.TestCaseR\ttestCases\"<\n" +
 	"\x1cGetProgramByProgramIdRequest\x12\x1c\n" +
-	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"\x83\x03\n" +
+	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"\x8b\x03\n" +
 	"\x1dGetProgramByProgramIdResponse\x12\x1c\n" +
 	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
@@ -1027,10 +1027,10 @@ const file_program_v1_program_proto_rawDesc = "" +
 	"\acreator\x18\x05 \x01(\tR\acreator\x12\x1c\n" +
 	"\tupdatedBy\x18\x06 \x01(\x04R\tupdatedBy\x12\x18\n" +
 	"\aupdator\x18\a \x01(\tR\aupdator\x12\x14\n" +
-	"\x05level\x18\b \x01(\tR\x05level\x12\x1c\n" +
-	"\ttimeLimit\x18\t \x01(\x04R\ttimeLimit\x12 \n" +
-	"\vmemoryLimit\x18\n" +
-	" \x01(\x04R\vmemoryLimit\x12\x12\n" +
+	"\x05level\x18\b \x01(\tR\x05level\x12 \n" +
+	"\vtimeLimitMS\x18\t \x01(\x04R\vtimeLimitMS\x12$\n" +
+	"\rmemoryLimitMB\x18\n" +
+	" \x01(\x04R\rmemoryLimitMB\x12\x12\n" +
 	"\x04tags\x18\v \x03(\tR\x04tags\x12\x1c\n" +
 	"\tcreatedAt\x18\f \x01(\tR\tcreatedAt\x12\x1c\n" +
 	"\tupdatedAt\x18\r \x01(\tR\tupdatedAt\"\x89\x01\n" +
@@ -1059,14 +1059,14 @@ const file_program_v1_program_proto_rawDesc = "" +
 	"\vtestCaseNum\x18\x01 \x01(\x05R\vtestCaseNum\x12\x1e\n" +
 	"\n" +
 	"testCaseId\x18\x02 \x01(\tR\n" +
-	"testCaseId\"\xce\x01\n" +
+	"testCaseId\"\xd6\x01\n" +
 	"\x14CreateProgramRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x1c\n" +
 	"\tcreatedBy\x18\x03 \x01(\x04R\tcreatedBy\x12\x14\n" +
-	"\x05level\x18\x04 \x01(\x05R\x05level\x12\x1c\n" +
-	"\ttimeLimit\x18\x05 \x01(\x04R\ttimeLimit\x12 \n" +
-	"\vmemoryLimit\x18\x06 \x01(\x04R\vmemoryLimit\x12\x12\n" +
+	"\x05level\x18\x04 \x01(\x05R\x05level\x12 \n" +
+	"\vtimeLimitMS\x18\x05 \x01(\x04R\vtimeLimitMS\x12$\n" +
+	"\rmemoryLimitMB\x18\x06 \x01(\x04R\rmemoryLimitMB\x12\x12\n" +
 	"\x04tags\x18\a \x03(\tR\x04tags\"5\n" +
 	"\x15CreateProgramResponse\x12\x1c\n" +
 	"\tprogramId\x18\x01 \x01(\x04R\tprogramId2\xa9\a\n" +

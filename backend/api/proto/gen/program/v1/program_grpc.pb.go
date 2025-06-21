@@ -25,6 +25,8 @@ const (
 	ProgramService_DeleteTestCaseByProgramIdAndTestCaseId_FullMethodName = "/program.v1.ProgramService/DeleteTestCaseByProgramIdAndTestCaseId"
 	ProgramService_GetProgramByProgramId_FullMethodName                  = "/program.v1.ProgramService/GetProgramByProgramId"
 	ProgramService_GetTestCasesByProgramId_FullMethodName                = "/program.v1.ProgramService/GetTestCasesByProgramId"
+	ProgramService_EnableProgram_FullMethodName                          = "/program.v1.ProgramService/EnableProgram"
+	ProgramService_DisableProgram_FullMethodName                         = "/program.v1.ProgramService/DisableProgram"
 )
 
 // ProgramServiceClient is the client API for ProgramService service.
@@ -37,6 +39,8 @@ type ProgramServiceClient interface {
 	DeleteTestCaseByProgramIdAndTestCaseId(ctx context.Context, in *DeleteTestCaseByProgramIdAndTestCaseIdRequest, opts ...grpc.CallOption) (*DeleteTestCaseByProgramIdAndTestCaseIdResponse, error)
 	GetProgramByProgramId(ctx context.Context, in *GetProgramByProgramIdRequest, opts ...grpc.CallOption) (*GetProgramByProgramIdResponse, error)
 	GetTestCasesByProgramId(ctx context.Context, in *GetTestCasesByProgramIdRequest, opts ...grpc.CallOption) (*GetTestCasesByProgramIdResponse, error)
+	EnableProgram(ctx context.Context, in *EnableProgramRequest, opts ...grpc.CallOption) (*EnableProgramResponse, error)
+	DisableProgram(ctx context.Context, in *DisableProgramRequest, opts ...grpc.CallOption) (*DisableProgramResponse, error)
 }
 
 type programServiceClient struct {
@@ -107,6 +111,26 @@ func (c *programServiceClient) GetTestCasesByProgramId(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *programServiceClient) EnableProgram(ctx context.Context, in *EnableProgramRequest, opts ...grpc.CallOption) (*EnableProgramResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EnableProgramResponse)
+	err := c.cc.Invoke(ctx, ProgramService_EnableProgram_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *programServiceClient) DisableProgram(ctx context.Context, in *DisableProgramRequest, opts ...grpc.CallOption) (*DisableProgramResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DisableProgramResponse)
+	err := c.cc.Invoke(ctx, ProgramService_DisableProgram_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProgramServiceServer is the server API for ProgramService service.
 // All implementations must embed UnimplementedProgramServiceServer
 // for forward compatibility.
@@ -117,6 +141,8 @@ type ProgramServiceServer interface {
 	DeleteTestCaseByProgramIdAndTestCaseId(context.Context, *DeleteTestCaseByProgramIdAndTestCaseIdRequest) (*DeleteTestCaseByProgramIdAndTestCaseIdResponse, error)
 	GetProgramByProgramId(context.Context, *GetProgramByProgramIdRequest) (*GetProgramByProgramIdResponse, error)
 	GetTestCasesByProgramId(context.Context, *GetTestCasesByProgramIdRequest) (*GetTestCasesByProgramIdResponse, error)
+	EnableProgram(context.Context, *EnableProgramRequest) (*EnableProgramResponse, error)
+	DisableProgram(context.Context, *DisableProgramRequest) (*DisableProgramResponse, error)
 	mustEmbedUnimplementedProgramServiceServer()
 }
 
@@ -144,6 +170,12 @@ func (UnimplementedProgramServiceServer) GetProgramByProgramId(context.Context, 
 }
 func (UnimplementedProgramServiceServer) GetTestCasesByProgramId(context.Context, *GetTestCasesByProgramIdRequest) (*GetTestCasesByProgramIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTestCasesByProgramId not implemented")
+}
+func (UnimplementedProgramServiceServer) EnableProgram(context.Context, *EnableProgramRequest) (*EnableProgramResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnableProgram not implemented")
+}
+func (UnimplementedProgramServiceServer) DisableProgram(context.Context, *DisableProgramRequest) (*DisableProgramResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DisableProgram not implemented")
 }
 func (UnimplementedProgramServiceServer) mustEmbedUnimplementedProgramServiceServer() {}
 func (UnimplementedProgramServiceServer) testEmbeddedByValue()                        {}
@@ -274,6 +306,42 @@ func _ProgramService_GetTestCasesByProgramId_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProgramService_EnableProgram_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnableProgramRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProgramServiceServer).EnableProgram(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProgramService_EnableProgram_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProgramServiceServer).EnableProgram(ctx, req.(*EnableProgramRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProgramService_DisableProgram_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DisableProgramRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProgramServiceServer).DisableProgram(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProgramService_DisableProgram_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProgramServiceServer).DisableProgram(ctx, req.(*DisableProgramRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProgramService_ServiceDesc is the grpc.ServiceDesc for ProgramService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +372,14 @@ var ProgramService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTestCasesByProgramId",
 			Handler:    _ProgramService_GetTestCasesByProgramId_Handler,
+		},
+		{
+			MethodName: "EnableProgram",
+			Handler:    _ProgramService_EnableProgram_Handler,
+		},
+		{
+			MethodName: "DisableProgram",
+			Handler:    _ProgramService_DisableProgram_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

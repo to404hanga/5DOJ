@@ -12,6 +12,26 @@ service ProgramService {
     rpc DeleteTestCaseByProgramIdAndTestCaseId (DeleteTestCaseByProgramIdAndTestCaseIdRequest) returns (DeleteTestCaseByProgramIdAndTestCaseIdResponse);
     rpc GetProgramByProgramId (GetProgramByProgramIdRequest) returns (GetProgramByProgramIdResponse);
     rpc GetTestCasesByProgramId (GetTestCasesByProgramIdRequest) returns (GetTestCasesByProgramIdResponse);
+    rpc EnableProgram (EnableProgramRequest) returns (EnableProgramResponse);
+    rpc DisableProgram (DisableProgramRequest) returns (DisableProgramResponse);
+}
+
+message DisableProgramRequest {
+    uint64 programId = 1;
+    uint64 operator = 2;
+}
+
+message DisableProgramResponse {
+    
+}
+
+message EnableProgramRequest {
+    uint64 programId = 1;
+    uint64 operator = 2;
+}
+
+message EnableProgramResponse {
+    
 }
 
 message GetTestCasesByProgramIdRequest {

@@ -14,6 +14,7 @@ type ProgramBase struct {
 	UpdatedBy   uint64    `gorm:"column:updated_by;type:bigint unsigned;not null;comment:更新者 id"`           // 更新者 id
 	CreatedAt   time.Time `gorm:"column:created_at;not null;comment:创建时间"`                                  // 创建时间
 	UpdatedAt   time.Time `gorm:"column:updated_at;not null;comment:更新时间"`                                  // 更新时间
+	Enabled     bool      `gorm:"column:enabled;type:tinyint;not null;comment:是否启用"`                        // 是否启用
 }
 
 func (ProgramBase) TableName() string {

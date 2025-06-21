@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package program.v1;
+option go_package = "program/v1;programv1";
+
+// import "google/protobuf/timestamp.proto";
+
+service ProgramService {
+    rpc CreateProgram (CreateProgramRequest) returns (CreateProgramResponse);
+    rpc AppendProgramTestCase (AppendProgramTestCaseRequest) returns (AppendProgramTestCaseResponse);
+    rpc UpdateTestCaseByProgramIdAndTestCaseId (UpdateTestCaseByProgramIdAndTestCaseIdRequest) returns (UpdateTestCaseByProgramIdAndTestCaseIdResponse);
+    rpc DeleteTestCaseByProgramIdAndTestCaseId (DeleteTestCaseByProgramIdAndTestCaseIdRequest) returns (DeleteTestCaseByProgramIdAndTestCaseIdResponse);
+    rpc GetProgramByProgramId (GetProgramByProgramIdRequest) returns (GetProgramByProgramIdResponse);
+    rpc GetTestCasesByProgramId (GetTestCasesByProgramIdRequest) returns (GetTestCasesByProgramIdResponse);
+}
+
+message GetTestCasesByProgramIdRequest {
+    uint64 programId = 1;
+}
+
+message GetTestCasesByProgramIdResponse {
+    repeated string inputs = 1;
+    repeated string expecteds = 2;
+}
+
+message GetProgramByProgramIdRequest {
+    uint64 programId = 1;
+}
+
+message GetProgramByProgramIdResponse {
+    uint64 programId = 1;
+    string title = 2;
+    string content = 3;
+    uint64 createdBy = 4;
+    string createdByName = 5;
+    string level = 6;
+    uint64 timeLimit = 7;
+    uint64 memoryLimit = 8;
+    repeated string tags = 9;
+    string createdAt = 10;
+    string updatedAt = 11;
+}
+
+message DeleteTestCaseByProgramIdAndTestCaseIdRequest {
+    uint64 programId = 1;
+    string testCaseId = 2;
+    uint64 operator = 3;
+}
+
+message DeleteTestCaseByProgramIdAndTestCaseIdResponse {
+
+}
+
+message UpdateTestCaseByProgramIdAndTestCaseIdRequest {
+    uint64 programId = 1;
+    string testCaseId = 2;
+    string input = 3;
+    string expected = 4;
+    uint64 operator = 5;
+}
+
+message UpdateTestCaseByProgramIdAndTestCaseIdResponse {
+
+}
+
+message AppendProgramTestCaseRequest {
+    uint64 programId = 1;
+    uint64 operator = 2;
+    string input = 3;
+    string expected = 4;
+}
+
+message AppendProgramTestCaseResponse {
+    int32 testCaseNum = 1;
+    string testCaseId = 2;
+}
+
+message CreateProgramRequest {
+    string title = 1;
+    string content = 2;
+    uint64 createdBy = 3;
+    int32 level = 4;
+    uint64 timeLimit = 5;
+    uint64 memoryLimit = 6;
+    repeated string tags = 7;
+}
+
+message CreateProgramResponse {
+    uint64 programId = 1;
+}

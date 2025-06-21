@@ -8,7 +8,7 @@ import (
 )
 
 type IProgramService interface {
-	CreateProgram(ctx context.Context, title, content string, createdBy uint64, level constant.ProgramLevelType, timeLimit, memoryLimit uint64, tags []string) (programId uint64, err error)
+	CreateProgram(ctx context.Context, title, content string, createdBy uint64, level constant.ProgramLevelType, timeLimitMS, memoryLimitMB uint64, tags []string) (programId uint64, err error)
 	AppendProgramTestCase(ctx context.Context, programId, appendedBy uint64, input, expected string) (testCaseNum int, testCaseId string, err error)
 	UpdateTestCaseByProgramIdAndTestCaseId(ctx context.Context, programId uint64, testCaseId, intput, expected string, updatedBy uint64) (err error)
 	DeleteTestCaseByProgramIdAndTestCaseId(ctx context.Context, programId uint64, testCaseId string, deletedBy uint64) (err error)

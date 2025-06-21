@@ -18,9 +18,14 @@ message GetTestCasesByProgramIdRequest {
     uint64 programId = 1;
 }
 
+message TestCase {
+    string testCaseId = 1;
+    string input = 2;
+    string expected = 3;
+}
+
 message GetTestCasesByProgramIdResponse {
-    repeated string inputs = 1;
-    repeated string expecteds = 2;
+    repeated TestCase testCases = 1;
 }
 
 message GetProgramByProgramIdRequest {

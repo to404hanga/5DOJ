@@ -65,17 +65,76 @@ func (x *GetTestCasesByProgramIdRequest) GetProgramId() uint64 {
 	return 0
 }
 
+type TestCase struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TestCaseId    string                 `protobuf:"bytes,1,opt,name=testCaseId,proto3" json:"testCaseId,omitempty"`
+	Input         string                 `protobuf:"bytes,2,opt,name=input,proto3" json:"input,omitempty"`
+	Expected      string                 `protobuf:"bytes,3,opt,name=expected,proto3" json:"expected,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TestCase) Reset() {
+	*x = TestCase{}
+	mi := &file_program_v1_program_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TestCase) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCase) ProtoMessage() {}
+
+func (x *TestCase) ProtoReflect() protoreflect.Message {
+	mi := &file_program_v1_program_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCase.ProtoReflect.Descriptor instead.
+func (*TestCase) Descriptor() ([]byte, []int) {
+	return file_program_v1_program_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *TestCase) GetTestCaseId() string {
+	if x != nil {
+		return x.TestCaseId
+	}
+	return ""
+}
+
+func (x *TestCase) GetInput() string {
+	if x != nil {
+		return x.Input
+	}
+	return ""
+}
+
+func (x *TestCase) GetExpected() string {
+	if x != nil {
+		return x.Expected
+	}
+	return ""
+}
+
 type GetTestCasesByProgramIdResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Inputs        []string               `protobuf:"bytes,1,rep,name=inputs,proto3" json:"inputs,omitempty"`
-	Expecteds     []string               `protobuf:"bytes,2,rep,name=expecteds,proto3" json:"expecteds,omitempty"`
+	TestCases     []*TestCase            `protobuf:"bytes,1,rep,name=testCases,proto3" json:"testCases,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetTestCasesByProgramIdResponse) Reset() {
 	*x = GetTestCasesByProgramIdResponse{}
-	mi := &file_program_v1_program_proto_msgTypes[1]
+	mi := &file_program_v1_program_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +146,7 @@ func (x *GetTestCasesByProgramIdResponse) String() string {
 func (*GetTestCasesByProgramIdResponse) ProtoMessage() {}
 
 func (x *GetTestCasesByProgramIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[1]
+	mi := &file_program_v1_program_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,19 +159,12 @@ func (x *GetTestCasesByProgramIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTestCasesByProgramIdResponse.ProtoReflect.Descriptor instead.
 func (*GetTestCasesByProgramIdResponse) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{1}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetTestCasesByProgramIdResponse) GetInputs() []string {
+func (x *GetTestCasesByProgramIdResponse) GetTestCases() []*TestCase {
 	if x != nil {
-		return x.Inputs
-	}
-	return nil
-}
-
-func (x *GetTestCasesByProgramIdResponse) GetExpecteds() []string {
-	if x != nil {
-		return x.Expecteds
+		return x.TestCases
 	}
 	return nil
 }
@@ -126,7 +178,7 @@ type GetProgramByProgramIdRequest struct {
 
 func (x *GetProgramByProgramIdRequest) Reset() {
 	*x = GetProgramByProgramIdRequest{}
-	mi := &file_program_v1_program_proto_msgTypes[2]
+	mi := &file_program_v1_program_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -138,7 +190,7 @@ func (x *GetProgramByProgramIdRequest) String() string {
 func (*GetProgramByProgramIdRequest) ProtoMessage() {}
 
 func (x *GetProgramByProgramIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[2]
+	mi := &file_program_v1_program_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -151,7 +203,7 @@ func (x *GetProgramByProgramIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProgramByProgramIdRequest.ProtoReflect.Descriptor instead.
 func (*GetProgramByProgramIdRequest) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{2}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetProgramByProgramIdRequest) GetProgramId() uint64 {
@@ -182,7 +234,7 @@ type GetProgramByProgramIdResponse struct {
 
 func (x *GetProgramByProgramIdResponse) Reset() {
 	*x = GetProgramByProgramIdResponse{}
-	mi := &file_program_v1_program_proto_msgTypes[3]
+	mi := &file_program_v1_program_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -194,7 +246,7 @@ func (x *GetProgramByProgramIdResponse) String() string {
 func (*GetProgramByProgramIdResponse) ProtoMessage() {}
 
 func (x *GetProgramByProgramIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[3]
+	mi := &file_program_v1_program_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -207,7 +259,7 @@ func (x *GetProgramByProgramIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProgramByProgramIdResponse.ProtoReflect.Descriptor instead.
 func (*GetProgramByProgramIdResponse) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{3}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetProgramByProgramIdResponse) GetProgramId() uint64 {
@@ -312,7 +364,7 @@ type DeleteTestCaseByProgramIdAndTestCaseIdRequest struct {
 
 func (x *DeleteTestCaseByProgramIdAndTestCaseIdRequest) Reset() {
 	*x = DeleteTestCaseByProgramIdAndTestCaseIdRequest{}
-	mi := &file_program_v1_program_proto_msgTypes[4]
+	mi := &file_program_v1_program_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -324,7 +376,7 @@ func (x *DeleteTestCaseByProgramIdAndTestCaseIdRequest) String() string {
 func (*DeleteTestCaseByProgramIdAndTestCaseIdRequest) ProtoMessage() {}
 
 func (x *DeleteTestCaseByProgramIdAndTestCaseIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[4]
+	mi := &file_program_v1_program_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -337,7 +389,7 @@ func (x *DeleteTestCaseByProgramIdAndTestCaseIdRequest) ProtoReflect() protorefl
 
 // Deprecated: Use DeleteTestCaseByProgramIdAndTestCaseIdRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTestCaseByProgramIdAndTestCaseIdRequest) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{4}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DeleteTestCaseByProgramIdAndTestCaseIdRequest) GetProgramId() uint64 {
@@ -369,7 +421,7 @@ type DeleteTestCaseByProgramIdAndTestCaseIdResponse struct {
 
 func (x *DeleteTestCaseByProgramIdAndTestCaseIdResponse) Reset() {
 	*x = DeleteTestCaseByProgramIdAndTestCaseIdResponse{}
-	mi := &file_program_v1_program_proto_msgTypes[5]
+	mi := &file_program_v1_program_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -381,7 +433,7 @@ func (x *DeleteTestCaseByProgramIdAndTestCaseIdResponse) String() string {
 func (*DeleteTestCaseByProgramIdAndTestCaseIdResponse) ProtoMessage() {}
 
 func (x *DeleteTestCaseByProgramIdAndTestCaseIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[5]
+	mi := &file_program_v1_program_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -394,7 +446,7 @@ func (x *DeleteTestCaseByProgramIdAndTestCaseIdResponse) ProtoReflect() protoref
 
 // Deprecated: Use DeleteTestCaseByProgramIdAndTestCaseIdResponse.ProtoReflect.Descriptor instead.
 func (*DeleteTestCaseByProgramIdAndTestCaseIdResponse) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{5}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{6}
 }
 
 type UpdateTestCaseByProgramIdAndTestCaseIdRequest struct {
@@ -410,7 +462,7 @@ type UpdateTestCaseByProgramIdAndTestCaseIdRequest struct {
 
 func (x *UpdateTestCaseByProgramIdAndTestCaseIdRequest) Reset() {
 	*x = UpdateTestCaseByProgramIdAndTestCaseIdRequest{}
-	mi := &file_program_v1_program_proto_msgTypes[6]
+	mi := &file_program_v1_program_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -422,7 +474,7 @@ func (x *UpdateTestCaseByProgramIdAndTestCaseIdRequest) String() string {
 func (*UpdateTestCaseByProgramIdAndTestCaseIdRequest) ProtoMessage() {}
 
 func (x *UpdateTestCaseByProgramIdAndTestCaseIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[6]
+	mi := &file_program_v1_program_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -435,7 +487,7 @@ func (x *UpdateTestCaseByProgramIdAndTestCaseIdRequest) ProtoReflect() protorefl
 
 // Deprecated: Use UpdateTestCaseByProgramIdAndTestCaseIdRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTestCaseByProgramIdAndTestCaseIdRequest) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{6}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateTestCaseByProgramIdAndTestCaseIdRequest) GetProgramId() uint64 {
@@ -481,7 +533,7 @@ type UpdateTestCaseByProgramIdAndTestCaseIdResponse struct {
 
 func (x *UpdateTestCaseByProgramIdAndTestCaseIdResponse) Reset() {
 	*x = UpdateTestCaseByProgramIdAndTestCaseIdResponse{}
-	mi := &file_program_v1_program_proto_msgTypes[7]
+	mi := &file_program_v1_program_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -493,7 +545,7 @@ func (x *UpdateTestCaseByProgramIdAndTestCaseIdResponse) String() string {
 func (*UpdateTestCaseByProgramIdAndTestCaseIdResponse) ProtoMessage() {}
 
 func (x *UpdateTestCaseByProgramIdAndTestCaseIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[7]
+	mi := &file_program_v1_program_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -506,7 +558,7 @@ func (x *UpdateTestCaseByProgramIdAndTestCaseIdResponse) ProtoReflect() protoref
 
 // Deprecated: Use UpdateTestCaseByProgramIdAndTestCaseIdResponse.ProtoReflect.Descriptor instead.
 func (*UpdateTestCaseByProgramIdAndTestCaseIdResponse) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{7}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{8}
 }
 
 type AppendProgramTestCaseRequest struct {
@@ -521,7 +573,7 @@ type AppendProgramTestCaseRequest struct {
 
 func (x *AppendProgramTestCaseRequest) Reset() {
 	*x = AppendProgramTestCaseRequest{}
-	mi := &file_program_v1_program_proto_msgTypes[8]
+	mi := &file_program_v1_program_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -533,7 +585,7 @@ func (x *AppendProgramTestCaseRequest) String() string {
 func (*AppendProgramTestCaseRequest) ProtoMessage() {}
 
 func (x *AppendProgramTestCaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[8]
+	mi := &file_program_v1_program_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -546,7 +598,7 @@ func (x *AppendProgramTestCaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppendProgramTestCaseRequest.ProtoReflect.Descriptor instead.
 func (*AppendProgramTestCaseRequest) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{8}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *AppendProgramTestCaseRequest) GetProgramId() uint64 {
@@ -587,7 +639,7 @@ type AppendProgramTestCaseResponse struct {
 
 func (x *AppendProgramTestCaseResponse) Reset() {
 	*x = AppendProgramTestCaseResponse{}
-	mi := &file_program_v1_program_proto_msgTypes[9]
+	mi := &file_program_v1_program_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -599,7 +651,7 @@ func (x *AppendProgramTestCaseResponse) String() string {
 func (*AppendProgramTestCaseResponse) ProtoMessage() {}
 
 func (x *AppendProgramTestCaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[9]
+	mi := &file_program_v1_program_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -612,7 +664,7 @@ func (x *AppendProgramTestCaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AppendProgramTestCaseResponse.ProtoReflect.Descriptor instead.
 func (*AppendProgramTestCaseResponse) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{9}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AppendProgramTestCaseResponse) GetTestCaseNum() int32 {
@@ -644,7 +696,7 @@ type CreateProgramRequest struct {
 
 func (x *CreateProgramRequest) Reset() {
 	*x = CreateProgramRequest{}
-	mi := &file_program_v1_program_proto_msgTypes[10]
+	mi := &file_program_v1_program_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -656,7 +708,7 @@ func (x *CreateProgramRequest) String() string {
 func (*CreateProgramRequest) ProtoMessage() {}
 
 func (x *CreateProgramRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[10]
+	mi := &file_program_v1_program_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -669,7 +721,7 @@ func (x *CreateProgramRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProgramRequest.ProtoReflect.Descriptor instead.
 func (*CreateProgramRequest) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{10}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CreateProgramRequest) GetTitle() string {
@@ -730,7 +782,7 @@ type CreateProgramResponse struct {
 
 func (x *CreateProgramResponse) Reset() {
 	*x = CreateProgramResponse{}
-	mi := &file_program_v1_program_proto_msgTypes[11]
+	mi := &file_program_v1_program_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -742,7 +794,7 @@ func (x *CreateProgramResponse) String() string {
 func (*CreateProgramResponse) ProtoMessage() {}
 
 func (x *CreateProgramResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_program_v1_program_proto_msgTypes[11]
+	mi := &file_program_v1_program_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -755,7 +807,7 @@ func (x *CreateProgramResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProgramResponse.ProtoReflect.Descriptor instead.
 func (*CreateProgramResponse) Descriptor() ([]byte, []int) {
-	return file_program_v1_program_proto_rawDescGZIP(), []int{11}
+	return file_program_v1_program_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CreateProgramResponse) GetProgramId() uint64 {
@@ -772,10 +824,15 @@ const file_program_v1_program_proto_rawDesc = "" +
 	"\x18program/v1/program.proto\x12\n" +
 	"program.v1\">\n" +
 	"\x1eGetTestCasesByProgramIdRequest\x12\x1c\n" +
-	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"W\n" +
-	"\x1fGetTestCasesByProgramIdResponse\x12\x16\n" +
-	"\x06inputs\x18\x01 \x03(\tR\x06inputs\x12\x1c\n" +
-	"\texpecteds\x18\x02 \x03(\tR\texpecteds\"<\n" +
+	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"\\\n" +
+	"\bTestCase\x12\x1e\n" +
+	"\n" +
+	"testCaseId\x18\x01 \x01(\tR\n" +
+	"testCaseId\x12\x14\n" +
+	"\x05input\x18\x02 \x01(\tR\x05input\x12\x1a\n" +
+	"\bexpected\x18\x03 \x01(\tR\bexpected\"U\n" +
+	"\x1fGetTestCasesByProgramIdResponse\x122\n" +
+	"\ttestCases\x18\x01 \x03(\v2\x14.program.v1.TestCaseR\ttestCases\"<\n" +
 	"\x1cGetProgramByProgramIdRequest\x12\x1c\n" +
 	"\tprogramId\x18\x01 \x01(\x04R\tprogramId\"\x83\x03\n" +
 	"\x1dGetProgramByProgramIdResponse\x12\x1c\n" +
@@ -852,39 +909,41 @@ func file_program_v1_program_proto_rawDescGZIP() []byte {
 	return file_program_v1_program_proto_rawDescData
 }
 
-var file_program_v1_program_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_program_v1_program_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_program_v1_program_proto_goTypes = []any{
 	(*GetTestCasesByProgramIdRequest)(nil),                 // 0: program.v1.GetTestCasesByProgramIdRequest
-	(*GetTestCasesByProgramIdResponse)(nil),                // 1: program.v1.GetTestCasesByProgramIdResponse
-	(*GetProgramByProgramIdRequest)(nil),                   // 2: program.v1.GetProgramByProgramIdRequest
-	(*GetProgramByProgramIdResponse)(nil),                  // 3: program.v1.GetProgramByProgramIdResponse
-	(*DeleteTestCaseByProgramIdAndTestCaseIdRequest)(nil),  // 4: program.v1.DeleteTestCaseByProgramIdAndTestCaseIdRequest
-	(*DeleteTestCaseByProgramIdAndTestCaseIdResponse)(nil), // 5: program.v1.DeleteTestCaseByProgramIdAndTestCaseIdResponse
-	(*UpdateTestCaseByProgramIdAndTestCaseIdRequest)(nil),  // 6: program.v1.UpdateTestCaseByProgramIdAndTestCaseIdRequest
-	(*UpdateTestCaseByProgramIdAndTestCaseIdResponse)(nil), // 7: program.v1.UpdateTestCaseByProgramIdAndTestCaseIdResponse
-	(*AppendProgramTestCaseRequest)(nil),                   // 8: program.v1.AppendProgramTestCaseRequest
-	(*AppendProgramTestCaseResponse)(nil),                  // 9: program.v1.AppendProgramTestCaseResponse
-	(*CreateProgramRequest)(nil),                           // 10: program.v1.CreateProgramRequest
-	(*CreateProgramResponse)(nil),                          // 11: program.v1.CreateProgramResponse
+	(*TestCase)(nil),                                       // 1: program.v1.TestCase
+	(*GetTestCasesByProgramIdResponse)(nil),                // 2: program.v1.GetTestCasesByProgramIdResponse
+	(*GetProgramByProgramIdRequest)(nil),                   // 3: program.v1.GetProgramByProgramIdRequest
+	(*GetProgramByProgramIdResponse)(nil),                  // 4: program.v1.GetProgramByProgramIdResponse
+	(*DeleteTestCaseByProgramIdAndTestCaseIdRequest)(nil),  // 5: program.v1.DeleteTestCaseByProgramIdAndTestCaseIdRequest
+	(*DeleteTestCaseByProgramIdAndTestCaseIdResponse)(nil), // 6: program.v1.DeleteTestCaseByProgramIdAndTestCaseIdResponse
+	(*UpdateTestCaseByProgramIdAndTestCaseIdRequest)(nil),  // 7: program.v1.UpdateTestCaseByProgramIdAndTestCaseIdRequest
+	(*UpdateTestCaseByProgramIdAndTestCaseIdResponse)(nil), // 8: program.v1.UpdateTestCaseByProgramIdAndTestCaseIdResponse
+	(*AppendProgramTestCaseRequest)(nil),                   // 9: program.v1.AppendProgramTestCaseRequest
+	(*AppendProgramTestCaseResponse)(nil),                  // 10: program.v1.AppendProgramTestCaseResponse
+	(*CreateProgramRequest)(nil),                           // 11: program.v1.CreateProgramRequest
+	(*CreateProgramResponse)(nil),                          // 12: program.v1.CreateProgramResponse
 }
 var file_program_v1_program_proto_depIdxs = []int32{
-	10, // 0: program.v1.ProgramService.CreateProgram:input_type -> program.v1.CreateProgramRequest
-	8,  // 1: program.v1.ProgramService.AppendProgramTestCase:input_type -> program.v1.AppendProgramTestCaseRequest
-	6,  // 2: program.v1.ProgramService.UpdateTestCaseByProgramIdAndTestCaseId:input_type -> program.v1.UpdateTestCaseByProgramIdAndTestCaseIdRequest
-	4,  // 3: program.v1.ProgramService.DeleteTestCaseByProgramIdAndTestCaseId:input_type -> program.v1.DeleteTestCaseByProgramIdAndTestCaseIdRequest
-	2,  // 4: program.v1.ProgramService.GetProgramByProgramId:input_type -> program.v1.GetProgramByProgramIdRequest
-	0,  // 5: program.v1.ProgramService.GetTestCasesByProgramId:input_type -> program.v1.GetTestCasesByProgramIdRequest
-	11, // 6: program.v1.ProgramService.CreateProgram:output_type -> program.v1.CreateProgramResponse
-	9,  // 7: program.v1.ProgramService.AppendProgramTestCase:output_type -> program.v1.AppendProgramTestCaseResponse
-	7,  // 8: program.v1.ProgramService.UpdateTestCaseByProgramIdAndTestCaseId:output_type -> program.v1.UpdateTestCaseByProgramIdAndTestCaseIdResponse
-	5,  // 9: program.v1.ProgramService.DeleteTestCaseByProgramIdAndTestCaseId:output_type -> program.v1.DeleteTestCaseByProgramIdAndTestCaseIdResponse
-	3,  // 10: program.v1.ProgramService.GetProgramByProgramId:output_type -> program.v1.GetProgramByProgramIdResponse
-	1,  // 11: program.v1.ProgramService.GetTestCasesByProgramId:output_type -> program.v1.GetTestCasesByProgramIdResponse
-	6,  // [6:12] is the sub-list for method output_type
-	0,  // [0:6] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	1,  // 0: program.v1.GetTestCasesByProgramIdResponse.testCases:type_name -> program.v1.TestCase
+	11, // 1: program.v1.ProgramService.CreateProgram:input_type -> program.v1.CreateProgramRequest
+	9,  // 2: program.v1.ProgramService.AppendProgramTestCase:input_type -> program.v1.AppendProgramTestCaseRequest
+	7,  // 3: program.v1.ProgramService.UpdateTestCaseByProgramIdAndTestCaseId:input_type -> program.v1.UpdateTestCaseByProgramIdAndTestCaseIdRequest
+	5,  // 4: program.v1.ProgramService.DeleteTestCaseByProgramIdAndTestCaseId:input_type -> program.v1.DeleteTestCaseByProgramIdAndTestCaseIdRequest
+	3,  // 5: program.v1.ProgramService.GetProgramByProgramId:input_type -> program.v1.GetProgramByProgramIdRequest
+	0,  // 6: program.v1.ProgramService.GetTestCasesByProgramId:input_type -> program.v1.GetTestCasesByProgramIdRequest
+	12, // 7: program.v1.ProgramService.CreateProgram:output_type -> program.v1.CreateProgramResponse
+	10, // 8: program.v1.ProgramService.AppendProgramTestCase:output_type -> program.v1.AppendProgramTestCaseResponse
+	8,  // 9: program.v1.ProgramService.UpdateTestCaseByProgramIdAndTestCaseId:output_type -> program.v1.UpdateTestCaseByProgramIdAndTestCaseIdResponse
+	6,  // 10: program.v1.ProgramService.DeleteTestCaseByProgramIdAndTestCaseId:output_type -> program.v1.DeleteTestCaseByProgramIdAndTestCaseIdResponse
+	4,  // 11: program.v1.ProgramService.GetProgramByProgramId:output_type -> program.v1.GetProgramByProgramIdResponse
+	2,  // 12: program.v1.ProgramService.GetTestCasesByProgramId:output_type -> program.v1.GetTestCasesByProgramIdResponse
+	7,  // [7:13] is the sub-list for method output_type
+	1,  // [1:7] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_program_v1_program_proto_init() }
@@ -898,7 +957,7 @@ func file_program_v1_program_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_program_v1_program_proto_rawDesc), len(file_program_v1_program_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

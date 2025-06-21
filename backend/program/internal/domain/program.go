@@ -14,4 +14,11 @@ type ProgramView struct {
 	Tags        []string `json:"tags"`
 	CreatedAt   string   `json:"createdAt"`
 	UpdatedAt   string   `json:"updatedAt"`
+	Enabled     bool     `json:"enabled"`
+}
+
+type TestCaseView struct {
+	TestCaseId string `json:"testCaseId"`
+	Inputs     string `json:"input"`
+	Expecteds  string `json:"expected"`
 }

@@ -6,6 +6,7 @@ import (
 	"5DOJ/pkg/constant/contestMode"
 	"5DOJ/pkg/constant/language"
 	"5DOJ/pkg/constant/topic"
+	"5DOJ/pkg/kafka"
 	"context"
 
 	"github.com/IBM/sarama"
@@ -16,7 +17,7 @@ type JudgerSubmitConsumer struct {
 	svc service.IJudgerService
 }
 
-var _ Consumer = (*JudgerSubmitConsumer)(nil)
+var _ kafka.Consumer = (*JudgerSubmitConsumer)(nil)
 
 func NewJudgerSubmitConsumer(svc service.IJudgerService) *JudgerSubmitConsumer {
 	return &JudgerSubmitConsumer{
@@ -45,6 +46,6 @@ func (j *JudgerSubmitConsumer) Consume(msg *sarama.ConsumerMessage, evt topic.Su
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	_, _, _, err = j.svc.Judge(ctx, evt.RecordId, evt.ProblemId, language.LanguageType(evt.Language), evt.Code, contestMode.ContestModeType(evt.Mode))
+	_, _, _, err = j.svc.Judge(ctx, evt.RecordId, evt.ProblemId, language.LanguageType(evt.Language), evt.FilenameWithoutExt, evt.Code, contestMode.ContestModeType(evt.Mode))
 	return
 }

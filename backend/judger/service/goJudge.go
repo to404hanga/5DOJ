@@ -5,6 +5,7 @@ import (
 	"5DOJ/pkg/constant/contestMode"
 	"5DOJ/pkg/constant/evaluationStatus"
 	"5DOJ/pkg/constant/language"
+	"5DOJ/pkg/model"
 	"context"
 	"crypto/rand"
 	_ "embed"
@@ -53,9 +54,9 @@ func (j *GoJudgeJudgerService) Preheater(ctx context.Context, contestId uint64) 
 	return json.Unmarshal([]byte(val), &global.CP)
 }
 
-func (j *GoJudgeJudgerService) Judge(ctx context.Context, recordId, problemId uint64, lang language.LanguageType, userCode string, mode contestMode.ContestModeType) (evalutionStatus evaluationStatus.EvaluationStatusType, timeUsageMS, memoryUsageKB uint64, err error) {
-	var fileId, filenameWithoutExt string
-	fileId, filenameWithoutExt, err = j.compile(ctx, lang, userCode)
+func (j *GoJudgeJudgerService) Judge(ctx context.Context, recordId, problemId uint64, lang language.LanguageType, filenameWithoutExt, userCode string, mode contestMode.ContestModeType) (evalutionStatus evaluationStatus.EvaluationStatusType, timeUsageMS, memoryUsageKB uint64, err error) {
+	var fileId string
+	fileId, err = j.compile(ctx, lang, filenameWithoutExt, userCode)
 	if err != nil {
 		evalutionStatus = evaluationStatus.CE
 		return
@@ -69,7 +70,9 @@ func (j *GoJudgeJudgerService) Judge(ctx context.Context, recordId, problemId ui
 		score int
 	)
 	defer func() {
-		if errI := global.MySQL.WithContext(ctx).Where("id = ?", recordId).Updates(map[string]any{
+		if errI := global.MySQL.WithContext(ctx).
+			Model(&model.Record{}).
+			Where("id = ?", recordId).Updates(map[string]any{
 			"status":          evalutionStatus,
 			"time_usage_ms":   timeUsageMS,
 			"memory_usage_kb": memoryUsageKB,
@@ -146,8 +149,7 @@ func (j *GoJudgeJudgerService) remove(fileId string) (err error) {
 	return
 }
 
-func (j *GoJudgeJudgerService) compile(ctx context.Context, lang language.LanguageType, userCode string) (fileId, filenameWithoutExt string, err error) {
-	filenameWithoutExt = uuid.New().String()
+func (j *GoJudgeJudgerService) compile(ctx context.Context, lang language.LanguageType, filenameWithoutExt, userCode string) (fileId string, err error) {
 	filename := filenameWithoutExt + "." + lang.String()
 	compiler := lang.Compiler()
 

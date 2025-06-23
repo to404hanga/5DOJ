@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package judger.v1;
+option go_package = "judger/v1;judgerv1";
+
+service JudgerService {
+    rpc Preheater(PreheaterRequest) returns (PreheaterResponse); // 预热测试用例集
+}
+
+message PreheaterRequest {
+    uint64 contestId = 1; // 比赛 ID
+}
+
+message PreheaterResult {
+    uint64 problemId = 1;             // 题目 ID
+    repeated string testCasesIds = 2; // 测试用例 ID
+}
+
+message PreheaterResponse {
+    repeated PreheaterResult results = 1; // 预热结果
+}

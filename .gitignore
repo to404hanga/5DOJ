@@ -4,3 +4,5 @@
 **.yaml
 !*.template.yaml
 !*.gen.yaml
+!docker-compose.yaml
+!prometheus.yaml

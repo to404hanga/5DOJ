@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package submitter.v1;
+option go_package = "submitter/v1;submitterv1";
+
+import "google/protobuf/timestamp.proto";
+
+service SubmitterService {
+    rpc Submit(SubmitRequest) returns (SubmitResponse);
+    rpc Query(QueryRequest) returns (QueryResponse);
+}
+
+message QueryRequest {
+    uint64 recordId = 1;
+}
+
+message QueryResponse {
+    uint64 recordId = 1;
+    uint64 contestId = 2;
+    uint64 problemId = 3;
+    uint64 userId = 4;
+    string language = 5;
+    int32 score = 6;
+    string result = 7;
+    uint64 timeUsageMS = 8;
+    uint64 memoryUsageKB = 9;
+    string code = 10;
+    google.protobuf.Timestamp submitTime = 11;
+    string userName = 12;
+    string problemTitle = 13;
+}
+
+message SubmitRequest {
+    uint64 contestId = 1;
+    uint64 problemId = 2;
+    uint64 userId = 3;
+    string language = 4;
+    string code = 5;
+    string mode = 6;
+}
+
+message SubmitResponse {
+    uint64 recordId = 1;
+}

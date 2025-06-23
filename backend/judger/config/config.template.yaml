@@ -1,0 +1,24 @@
+MySQL:
+  user: root
+  password: "123456"
+  Host: localhost
+  Port: 3306
+  Database: 5doj
+
+Redis:
+  addr: localhost:6379
+  password: 
+  db: 0
+
+Kafka:
+  addrs:
+    - localhost:9094
+
+Logger:
+  level: dev
+
+GoJudge:
+  baseUrl: http://localhost:5050
+
+Prometheus:
+  port: 8081

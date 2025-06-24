@@ -12,7 +12,7 @@ import (
 var (
 	MySQL *gorm.DB
 	CP    map[uint64]domain.Problem
-	Rds   redis.Cmdable
+	Redis redis.Cmdable
 	L     logger.Logger
 	Kafka sarama.Client
 )

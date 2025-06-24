@@ -46,7 +46,7 @@ func (j *GoJudgeJudgerService) Preheater(ctx context.Context, contestId uint64) 
 	key := fmt.Sprintf("contest:preheater:%d", contestId)
 
 	var val string
-	val, err = global.Rds.Get(ctx, key).Result()
+	val, err = global.Redis.Get(ctx, key).Result()
 	if err != nil {
 		return
 	}

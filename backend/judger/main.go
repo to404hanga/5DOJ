@@ -26,10 +26,10 @@ func main() {
 		panic(fmt.Errorf("读取配置文件失败: %s", err))
 	}
 
-	ioc.InitMySQL()
-	ioc.InitKafka()
-	ioc.InitRedis()
-	ioc.InitLogger()
+	global.MySQL = ioc.InitMySQL()
+	global.Kafka = ioc.InitKafka()
+	global.Redis = ioc.InitRedis()
+	global.L = ioc.InitLogger()
 	go func() {
 		http.Handle("/metrics", promhttp.Handler())
 		http.ListenAndServe(fmt.Sprintf(":%d", viper.GetInt("Prometheus.port")), nil)

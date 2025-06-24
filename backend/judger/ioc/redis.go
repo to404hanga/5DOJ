@@ -1,13 +1,11 @@
 package ioc
 
 import (
-	"5DOJ/judger/global"
-
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/viper"
 )
 
-func InitRedis() {
+func InitRedis() redis.Cmdable {
 	type Config struct {
 		Addr     string `yaml:"addr"`
 		Password string `yaml:"password"`
@@ -18,7 +16,7 @@ func InitRedis() {
 		panic(err)
 	}
 
-	global.Rds = redis.NewClient(&redis.Options{
+	return redis.NewClient(&redis.Options{
 		Addr:     config.Addr,
 		Password: config.Password,
 		DB:       config.DB,

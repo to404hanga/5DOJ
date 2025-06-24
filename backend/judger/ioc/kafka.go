@@ -2,7 +2,6 @@ package ioc
 
 import (
 	"5DOJ/judger/consumer"
-	"5DOJ/judger/global"
 	"fmt"
 
 	"github.com/IBM/sarama"
@@ -10,7 +9,7 @@ import (
 	"github.com/to404hanga/pkg404/saramax"
 )
 
-func InitKafka() {
+func InitKafka() sarama.Client {
 	type Config struct {
 		Addrs []string `yaml:"addrs"`
 	}
@@ -22,10 +21,11 @@ func InitKafka() {
 		panic(fmt.Errorf("读取 Kafka 配置失败: %s", err))
 	}
 
-	global.Kafka, err = sarama.NewClient(config.Addrs, saramaCfg)
+	client, err := sarama.NewClient(config.Addrs, saramaCfg)
 	if err != nil {
 		panic(fmt.Errorf("连接 Kafka 失败: %s", err))
 	}
+	return client
 }
 
 func NewConsumers(judger *consumer.JudgerSubmitConsumer) []saramax.Consumer {

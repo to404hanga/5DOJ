@@ -1,7 +1,6 @@
 package ioc
 
 import (
-	"5DOJ/judger/global"
 	"fmt"
 
 	"github.com/spf13/viper"
@@ -9,7 +8,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func InitLogger() {
+func InitLogger() logger.Logger {
 	type Config struct {
 		Level string `yaml:"level"`
 	}
@@ -26,7 +25,8 @@ func InitLogger() {
 	case "product":
 		cfg = zap.NewProductionConfig()
 	default:
-		panic(fmt.Errorf("Logger.level 配置错误: %s", config.Level))
+		cfg = zap.NewDevelopmentConfig()
+		// panic(fmt.Errorf("Logger.level 配置错误: %s", config.Level))
 	}
 
 	var l *zap.Logger
@@ -34,5 +34,5 @@ func InitLogger() {
 	if err != nil {
 		panic(fmt.Errorf("初始化 logger 失败: %s", err))
 	}
-	global.L = logger.NewZapLogger(l)
+	return logger.NewZapLogger(l)
 }

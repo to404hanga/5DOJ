@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 	"gorm.io/plugin/prometheus"
 )
 
@@ -23,7 +24,12 @@ func InitMySQL() *gorm.DB {
 		panic(fmt.Errorf("读取 MySQL 配置失败: %s", err))
 	}
 
-	db, err := gorm.Open(mysql.Open(fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=True&loc=UTC", config.User, config.Password, config.Host, config.Port, config.DBName)), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=True&loc=UTC", config.User, config.Password, config.Host, config.Port, config.DBName)), &gorm.Config{
+		SkipDefaultTransaction: true,
+		NamingStrategy: schema.NamingStrategy{
+			SingularTable: true,
+		},
+	})
 	if err != nil {
 		panic(fmt.Errorf("连接 MySQL 失败: %s", err))
 	}

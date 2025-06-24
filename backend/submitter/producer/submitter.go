@@ -17,6 +17,7 @@ type SubmitterProducer struct {
 
 var _ Producer = (*SubmitterProducer)(nil)
 
+// 需要先初始化 global.Kafka
 func NewSubmitterProducer() *SubmitterProducer {
 	p, err := sarama.NewSyncProducerFromClient(global.Kafka)
 	if err != nil {

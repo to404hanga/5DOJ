@@ -1,0 +1,33 @@
+MySQL:
+  user: root
+  password: "123456"
+  Host: localhost
+  Port: 3306
+  Database: 5doj
+
+Kafka:
+  addrs:
+    - localhost:9094
+
+Logger:
+  level: dev
+
+Prometheus:
+  port: 8081
+
+Etcd:
+  endpoints:
+    - localhost:2379
+
+grpc:
+  server:
+    port: 8082
+    etcdAddr: localhost:2379
+    etcdTTL: 60
+
+MongoDB:
+  user: root
+  password: "123456"
+  Host: localhost
+  Port: 27017
+  dbName: 5doj

@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package user.v1;
+option go_package = "user/v1;userv1";
+
+service UserService {
+    rpc SignUp(SignUpRequest) returns (SignUpResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse);
+    rpc GetInfoByUid(GetInfoByUidRequest) returns (GetInfoByUidResponse);
+}
+
+message User {
+    string uid = 1;
+    string name = 2;
+    string telephoneNumber = 3;
+    string gender = 4;
+}
+
+message SignUpRequest {
+    User user = 1;
+}
+
+message SignUpResponse {
+
+}
+
+message LoginRequest {
+    string uid = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    User user = 1;
+}
+
+message UpdatePasswordRequest {
+    string uid = 1;
+    string password = 2;
+    string confirmPassword = 3;
+}
+
+message UpdatePasswordResponse {
+
+}
+
+message GetInfoByUidRequest {
+    string uid = 1;
+}
+
+message GetInfoByUidResponse {
+    User user = 1;
+}

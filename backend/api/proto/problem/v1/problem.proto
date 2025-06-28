@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package problem.v1;
+option go_package = "problem/v1;problemv1";
+
+import "google/protobuf/timestamp.proto";
+
+service ProblemService {
+    rpc Get(GetRequest) returns (GetResponse);
+    rpc GetTestCaseList(GetTestCaseListRequest) returns (GetTestCaseListResponse);
+    rpc GetList(GetListRequest) returns (GetListResponse);
+
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Update(UpdateRequest) returns (UpdateResponse);
+    rpc Enable(EnableRequest) returns (EnableResponse);
+    rpc Disable(DisableRequest) returns (DisableResponse);
+
+    rpc AppendTestCase(AppendTestCaseRequest) returns (AppendTestCaseResponse);
+    rpc UpdateTestCase(UpdateTestCaseRequest) returns (UpdateTestCaseResponse);
+    rpc EnableTestCase(EnableTestCaseRequest) returns (EnableTestCaseResponse);
+    rpc DisableTestCase(DisableTestCaseRequest) returns (DisableTestCaseResponse);
+}
+
+message Problem {
+    uint64 id = 1;
+    string title = 2;
+    int32 level = 3;
+    uint64 createdBy = 4;
+    uint64 updatedBy = 5;
+    bool enabled = 6;
+    int32 timeLimit = 7;
+    int32 memoryLimit = 8;
+    int32 totalScore = 9;
+    google.protobuf.Timestamp createdAt = 10;
+    google.protobuf.Timestamp updatedAt = 11;
+    string markdown = 12;
+}
+
+message GetRequest {
+    uint64 id = 1;
+}
+
+message GetResponse {
+    Problem problem = 1;
+}
+
+message GetTestCaseListRequest {
+    uint64 id = 1;
+}
+
+message GetTestCaseListResponse {
+    uint64 id = 1;
+    repeated TestCase list = 2;
+}
+
+message TestCase {
+    string id = 1;
+    string input = 2;
+    string output = 3;
+    int32 score = 4;
+    uint64 createdBy = 5;
+    uint64 updatedBy = 6;
+    bool enabled = 7;
+}
+
+message GetListRequest {
+    int32 page = 1;
+    int32 size = 2;
+    uint64 cursor = 3;
+}
+
+message GetListResponse {
+    int32 page = 1;
+    int32 size = 2;
+    int32 total = 3;
+    uint64 cursor = 4;
+    repeated Problem list = 5;
+}
+
+message CreateRequest {
+    string title = 1;
+    int32 level = 2;
+    uint64 createdBy = 3;
+    int32 timeLimit = 4;
+    int32 memoryLimit = 5;
+    int32 totalScore = 6;
+    string markdown = 7;
+}
+
+message CreateResponse {
+    uint64 id = 1;
+}
+
+message UpdateRequest {
+    uint64 id = 1;
+    string title = 2;
+    int32 level = 3;
+    uint64 updatedBy = 4;
+    int32 timeLimit = 5;
+    int32 memoryLimit = 6;
+    int32 totalScore = 7;
+    string markdown = 8;
+}
+
+message UpdateResponse {
+
+}
+
+message EnableRequest {
+    uint64 id = 1;
+    uint64 updatedBy = 2;
+}
+
+message EnableResponse {
+
+}
+
+message DisableRequest {
+    uint64 id = 1;
+    uint64 updatedBy = 2;
+}
+
+message DisableResponse {
+
+}
+
+message AppendTestCaseRequest {
+    uint64 id = 1;
+    string input = 2;
+    string output = 3;
+    int32 score = 4;
+    uint64 createdBy = 5;
+}
+
+message AppendTestCaseResponse {
+    uint64 pid = 1;
+    string tid = 2;
+}
+
+message UpdateTestCaseRequest {
+    uint64 pid = 1;
+    string tid = 2;
+    string input = 3;
+    string output = 4;
+    int32 score = 5;
+    uint64 updatedBy = 6;
+}
+
+message UpdateTestCaseResponse {
+
+}
+
+message EnableTestCaseRequest {
+    uint64 pid = 1;
+    string tid = 2;
+    uint64 updatedBy = 3;
+}
+
+message EnableTestCaseResponse {
+
+}
+
+message DisableTestCaseRequest {
+    uint64 pid = 1;
+    string tid = 2;
+    uint64 updatedBy = 3;
+}
+
+message DisableTestCaseResponse {
+    
+}

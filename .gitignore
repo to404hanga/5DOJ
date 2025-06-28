@@ -6,3 +6,5 @@
 !*.gen.yaml
 !docker-compose.yaml
 !prometheus.yaml
+
+data/

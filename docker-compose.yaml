@@ -18,7 +18,7 @@ services:
       - --binlog-format=ROW
       - --server-id=1
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: "123456"
     volumes:
       - ./script/mysql/:/docker-entrypoint-initdb.d/
     ports:
@@ -64,3 +64,14 @@ services:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
+
+  # postgres:
+  #   image: postgres:12-alpine
+  #   restart: always
+  #   environment:
+  #       POSTGRES_USER: root
+  #       POSTGRES_PASSWORD: "123456"
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - ./data/PostgreSQL/data:/var/lib/postgresql/data

@@ -573,8 +573,7 @@ type CreateRequest struct {
 	CreatedBy     uint64                 `protobuf:"varint,3,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
 	TimeLimit     int32                  `protobuf:"varint,4,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
 	MemoryLimit   int32                  `protobuf:"varint,5,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
-	TotalScore    int32                  `protobuf:"varint,6,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
-	Markdown      string                 `protobuf:"bytes,7,opt,name=markdown,proto3" json:"markdown,omitempty"`
+	Markdown      string                 `protobuf:"bytes,6,opt,name=markdown,proto3" json:"markdown,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -644,13 +643,6 @@ func (x *CreateRequest) GetMemoryLimit() int32 {
 	return 0
 }
 
-func (x *CreateRequest) GetTotalScore() int32 {
-	if x != nil {
-		return x.TotalScore
-	}
-	return 0
-}
-
 func (x *CreateRequest) GetMarkdown() string {
 	if x != nil {
 		return x.Markdown
@@ -710,8 +702,7 @@ type UpdateRequest struct {
 	UpdatedBy     uint64                 `protobuf:"varint,4,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	TimeLimit     int32                  `protobuf:"varint,5,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
 	MemoryLimit   int32                  `protobuf:"varint,6,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
-	TotalScore    int32                  `protobuf:"varint,7,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
-	Markdown      string                 `protobuf:"bytes,8,opt,name=markdown,proto3" json:"markdown,omitempty"`
+	Markdown      string                 `protobuf:"bytes,7,opt,name=markdown,proto3" json:"markdown,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -784,13 +775,6 @@ func (x *UpdateRequest) GetTimeLimit() int32 {
 func (x *UpdateRequest) GetMemoryLimit() int32 {
 	if x != nil {
 		return x.MemoryLimit
-	}
-	return 0
-}
-
-func (x *UpdateRequest) GetTotalScore() int32 {
-	if x != nil {
-		return x.TotalScore
 	}
 	return 0
 }
@@ -1503,30 +1487,24 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x04size\x18\x02 \x01(\x05R\x04size\x12\x14\n" +
 	"\x05total\x18\x03 \x01(\x05R\x05total\x12\x16\n" +
 	"\x06cursor\x18\x04 \x01(\x04R\x06cursor\x12'\n" +
-	"\x04list\x18\x05 \x03(\v2\x13.problem.v1.ProblemR\x04list\"\xd5\x01\n" +
+	"\x04list\x18\x05 \x03(\v2\x13.problem.v1.ProblemR\x04list\"\xb5\x01\n" +
 	"\rCreateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x1c\n" +
 	"\tcreatedBy\x18\x03 \x01(\x04R\tcreatedBy\x12\x1c\n" +
 	"\ttimeLimit\x18\x04 \x01(\x05R\ttimeLimit\x12 \n" +
-	"\vmemoryLimit\x18\x05 \x01(\x05R\vmemoryLimit\x12\x1e\n" +
-	"\n" +
-	"totalScore\x18\x06 \x01(\x05R\n" +
-	"totalScore\x12\x1a\n" +
-	"\bmarkdown\x18\a \x01(\tR\bmarkdown\" \n" +
+	"\vmemoryLimit\x18\x05 \x01(\x05R\vmemoryLimit\x12\x1a\n" +
+	"\bmarkdown\x18\x06 \x01(\tR\bmarkdown\" \n" +
 	"\x0eCreateResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"\xe5\x01\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"\xc5\x01\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
 	"\x05level\x18\x03 \x01(\x05R\x05level\x12\x1c\n" +
 	"\tupdatedBy\x18\x04 \x01(\x04R\tupdatedBy\x12\x1c\n" +
 	"\ttimeLimit\x18\x05 \x01(\x05R\ttimeLimit\x12 \n" +
-	"\vmemoryLimit\x18\x06 \x01(\x05R\vmemoryLimit\x12\x1e\n" +
-	"\n" +
-	"totalScore\x18\a \x01(\x05R\n" +
-	"totalScore\x12\x1a\n" +
-	"\bmarkdown\x18\b \x01(\tR\bmarkdown\"\x10\n" +
+	"\vmemoryLimit\x18\x06 \x01(\x05R\vmemoryLimit\x12\x1a\n" +
+	"\bmarkdown\x18\a \x01(\tR\bmarkdown\"\x10\n" +
 	"\x0eUpdateResponse\"=\n" +
 	"\rEnableRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1c\n" +

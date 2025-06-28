@@ -83,8 +83,7 @@ message CreateRequest {
     uint64 createdBy = 3;
     int32 timeLimit = 4;
     int32 memoryLimit = 5;
-    int32 totalScore = 6;
-    string markdown = 7;
+    string markdown = 6;
 }
 
 message CreateResponse {
@@ -98,8 +97,7 @@ message UpdateRequest {
     uint64 updatedBy = 4;
     int32 timeLimit = 5;
     int32 memoryLimit = 6;
-    int32 totalScore = 7;
-    string markdown = 8;
+    string markdown = 7;
 }
 
 message UpdateResponse {

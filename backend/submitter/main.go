@@ -36,6 +36,6 @@ func main() {
 	}()
 
 	if err := global.GrpcServer.Serve(); err != nil {
-		panic(fmt.Errorf("启动Grpc服务失败: %s", err))
+		panic(fmt.Errorf("启动 Grpc 服务失败: %s", err))
 	}
 }

@@ -31,9 +31,10 @@ message Problem {
     int32 timeLimit = 7;
     int32 memoryLimit = 8;
     int32 totalScore = 9;
-    google.protobuf.Timestamp createdAt = 10;
-    google.protobuf.Timestamp updatedAt = 11;
-    string markdown = 12;
+    int32 totalTestCase = 10;
+    google.protobuf.Timestamp createdAt = 11;
+    google.protobuf.Timestamp updatedAt = 12;
+    string markdown = 13;
 }
 
 message GetRequest {

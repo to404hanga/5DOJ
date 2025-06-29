@@ -33,9 +33,10 @@ type Problem struct {
 	TimeLimit     int32                  `protobuf:"varint,7,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
 	MemoryLimit   int32                  `protobuf:"varint,8,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
 	TotalScore    int32                  `protobuf:"varint,9,opt,name=totalScore,proto3" json:"totalScore,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
-	Markdown      string                 `protobuf:"bytes,12,opt,name=markdown,proto3" json:"markdown,omitempty"`
+	TotalTestCase int32                  `protobuf:"varint,10,opt,name=totalTestCase,proto3" json:"totalTestCase,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	Markdown      string                 `protobuf:"bytes,13,opt,name=markdown,proto3" json:"markdown,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,6 +130,13 @@ func (x *Problem) GetMemoryLimit() int32 {
 func (x *Problem) GetTotalScore() int32 {
 	if x != nil {
 		return x.TotalScore
+	}
+	return 0
+}
+
+func (x *Problem) GetTotalTestCase() int32 {
+	if x != nil {
+		return x.TotalTestCase
 	}
 	return 0
 }
@@ -1443,7 +1451,7 @@ var File_problem_v1_problem_proto protoreflect.FileDescriptor
 const file_problem_v1_problem_proto_rawDesc = "" +
 	"\n" +
 	"\x18problem/v1/problem.proto\x12\n" +
-	"problem.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8b\x03\n" +
+	"problem.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb1\x03\n" +
 	"\aProblem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
@@ -1455,11 +1463,12 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\vmemoryLimit\x18\b \x01(\x05R\vmemoryLimit\x12\x1e\n" +
 	"\n" +
 	"totalScore\x18\t \x01(\x05R\n" +
-	"totalScore\x128\n" +
-	"\tcreatedAt\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x128\n" +
-	"\tupdatedAt\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
-	"\bmarkdown\x18\f \x01(\tR\bmarkdown\"\x1c\n" +
+	"totalScore\x12$\n" +
+	"\rtotalTestCase\x18\n" +
+	" \x01(\x05R\rtotalTestCase\x128\n" +
+	"\tcreatedAt\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x128\n" +
+	"\tupdatedAt\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x1a\n" +
+	"\bmarkdown\x18\r \x01(\tR\bmarkdown\"\x1c\n" +
 	"\n" +
 	"GetRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"<\n" +

@@ -443,6 +443,7 @@ type GetListRequest struct {
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	Size          int32                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	Cursor        uint64                 `protobuf:"varint,3,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -496,6 +497,13 @@ func (x *GetListRequest) GetCursor() uint64 {
 		return x.Cursor
 	}
 	return 0
+}
+
+func (x *GetListRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
 }
 
 type GetListResponse struct {
@@ -1486,11 +1494,12 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x05score\x18\x04 \x01(\x05R\x05score\x12\x1c\n" +
 	"\tcreatedBy\x18\x05 \x01(\x04R\tcreatedBy\x12\x1c\n" +
 	"\tupdatedBy\x18\x06 \x01(\x04R\tupdatedBy\x12\x18\n" +
-	"\aenabled\x18\a \x01(\bR\aenabled\"P\n" +
+	"\aenabled\x18\a \x01(\bR\aenabled\"f\n" +
 	"\x0eGetListRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x12\n" +
 	"\x04size\x18\x02 \x01(\x05R\x04size\x12\x16\n" +
-	"\x06cursor\x18\x03 \x01(\x04R\x06cursor\"\x90\x01\n" +
+	"\x06cursor\x18\x03 \x01(\x04R\x06cursor\x12\x14\n" +
+	"\x05title\x18\x04 \x01(\tR\x05title\"\x90\x01\n" +
 	"\x0fGetListResponse\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x12\n" +
 	"\x04size\x18\x02 \x01(\x05R\x04size\x12\x14\n" +

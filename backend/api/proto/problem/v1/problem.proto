@@ -68,6 +68,7 @@ message GetListRequest {
     int32 page = 1;
     int32 size = 2;
     uint64 cursor = 3;
+    string title = 4;
 }
 
 message GetListResponse {

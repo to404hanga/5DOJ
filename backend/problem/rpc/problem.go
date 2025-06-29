@@ -1,4 +1,4 @@
-package grpc
+package rpc
 
 import (
 	problemv1 "5DOJ/api/proto/gen/problem/v1"

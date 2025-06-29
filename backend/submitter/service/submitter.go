@@ -23,7 +23,7 @@ func NewSubmitterService(producer producer.Producer) *SubmitterService {
 	}
 }
 
-func (s *SubmitterService) Submit(ctx context.Context, contestId, problemId, userId uint64, lang, code, mode string) (recordId uint64, err error) {
+func (s *SubmitterService) Submit(ctx context.Context, contestId, problemId, userId uint64, lang, code string, mode int8) (recordId uint64, err error) {
 	filenameWithoutExt := uuid.New().String()
 	if _, err = global.MongoDB.Collection("code").InsertOne(ctx, &model.Code{
 		FilenameWithoutExt: filenameWithoutExt,

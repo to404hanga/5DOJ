@@ -36,7 +36,7 @@ message SubmitRequest {
     uint64 userId = 3;
     string language = 4;
     string code = 5;
-    string mode = 6;
+    int32 mode = 6;
 }
 
 message SubmitResponse {

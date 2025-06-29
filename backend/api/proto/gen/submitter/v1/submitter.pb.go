@@ -213,7 +213,7 @@ type SubmitRequest struct {
 	UserId        uint64                 `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
 	Language      string                 `protobuf:"bytes,4,opt,name=language,proto3" json:"language,omitempty"`
 	Code          string                 `protobuf:"bytes,5,opt,name=code,proto3" json:"code,omitempty"`
-	Mode          string                 `protobuf:"bytes,6,opt,name=mode,proto3" json:"mode,omitempty"`
+	Mode          int32                  `protobuf:"varint,6,opt,name=mode,proto3" json:"mode,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -283,11 +283,11 @@ func (x *SubmitRequest) GetCode() string {
 	return ""
 }
 
-func (x *SubmitRequest) GetMode() string {
+func (x *SubmitRequest) GetMode() int32 {
 	if x != nil {
 		return x.Mode
 	}
-	return ""
+	return 0
 }
 
 type SubmitResponse struct {
@@ -364,7 +364,7 @@ const file_submitter_v1_submitter_proto_rawDesc = "" +
 	"\x06userId\x18\x03 \x01(\x04R\x06userId\x12\x1a\n" +
 	"\blanguage\x18\x04 \x01(\tR\blanguage\x12\x12\n" +
 	"\x04code\x18\x05 \x01(\tR\x04code\x12\x12\n" +
-	"\x04mode\x18\x06 \x01(\tR\x04mode\",\n" +
+	"\x04mode\x18\x06 \x01(\x05R\x04mode\",\n" +
 	"\x0eSubmitResponse\x12\x1a\n" +
 	"\brecordId\x18\x01 \x01(\x04R\brecordId2\x99\x01\n" +
 	"\x10SubmitterService\x12C\n" +

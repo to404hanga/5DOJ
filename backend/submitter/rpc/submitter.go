@@ -25,7 +25,7 @@ func (s *SubmitterServiceServer) Register(srv grpc.ServiceRegistrar) {
 }
 
 func (s *SubmitterServiceServer) Submit(ctx context.Context, req *submitterv1.SubmitRequest) (*submitterv1.SubmitResponse, error) {
-	recordId, err := s.svc.Submit(ctx, req.GetContestId(), req.GetProblemId(), req.GetUserId(), req.GetLanguage(), req.GetCode(), req.GetMode())
+	recordId, err := s.svc.Submit(ctx, req.GetContestId(), req.GetProblemId(), req.GetUserId(), req.GetLanguage(), req.GetCode(), int8(req.GetMode()))
 	return &submitterv1.SubmitResponse{
 		RecordId: recordId,
 	}, err

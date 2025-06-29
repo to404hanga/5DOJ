@@ -2,9 +2,9 @@ package service
 
 import (
 	"5DOJ/pkg/constant/topic"
-	"5DOJ/pkg/model"
 	"5DOJ/submitter/domain"
 	"5DOJ/submitter/global"
+	"5DOJ/submitter/model"
 	"5DOJ/submitter/producer"
 	"context"
 
@@ -25,7 +25,7 @@ func NewSubmitterService(producer producer.Producer) *SubmitterService {
 
 func (s *SubmitterService) Submit(ctx context.Context, contestId, problemId, userId uint64, lang, code, mode string) (recordId uint64, err error) {
 	filenameWithoutExt := uuid.New().String()
-	if err = model.InsertCode(ctx, model.Code{
+	if _, err = global.MongoDB.Collection("code").InsertOne(ctx, &model.Code{
 		FilenameWithoutExt: filenameWithoutExt,
 		Content:            code,
 	}); err != nil {

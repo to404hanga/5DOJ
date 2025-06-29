@@ -2,10 +2,10 @@ package service
 
 import (
 	"5DOJ/judger/global"
+	"5DOJ/judger/model"
 	"5DOJ/pkg/constant/contestMode"
 	"5DOJ/pkg/constant/evaluationStatus"
 	"5DOJ/pkg/constant/language"
-	"5DOJ/pkg/model"
 	"context"
 	"crypto/rand"
 	_ "embed"

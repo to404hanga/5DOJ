@@ -7,3 +7,7 @@ type ProblemContent struct {
 	Pid      uint64             `bson:"pid"`
 	Markdown string             `bson:"markdown"`
 }
+
+func (ProblemContent) TableName() string {
+	return "problem_content"
+}

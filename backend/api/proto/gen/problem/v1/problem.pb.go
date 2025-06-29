@@ -440,10 +440,9 @@ func (x *TestCase) GetEnabled() bool {
 
 type GetListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	Size          int32                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
-	Cursor        uint64                 `protobuf:"varint,3,opt,name=cursor,proto3" json:"cursor,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	Size          int32                  `protobuf:"varint,1,opt,name=size,proto3" json:"size,omitempty"`
+	Cursor        uint64                 `protobuf:"varint,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -478,13 +477,6 @@ func (*GetListRequest) Descriptor() ([]byte, []int) {
 	return file_problem_v1_problem_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetListRequest) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
 func (x *GetListRequest) GetSize() int32 {
 	if x != nil {
 		return x.Size
@@ -508,11 +500,9 @@ func (x *GetListRequest) GetTitle() string {
 
 type GetListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	Size          int32                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
-	Total         int32                  `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty"`
-	Cursor        uint64                 `protobuf:"varint,4,opt,name=cursor,proto3" json:"cursor,omitempty"`
-	List          []*Problem             `protobuf:"bytes,5,rep,name=list,proto3" json:"list,omitempty"`
+	Size          int32                  `protobuf:"varint,1,opt,name=size,proto3" json:"size,omitempty"`
+	Cursor        uint64                 `protobuf:"varint,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	List          []*Problem             `protobuf:"bytes,3,rep,name=list,proto3" json:"list,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -547,23 +537,9 @@ func (*GetListResponse) Descriptor() ([]byte, []int) {
 	return file_problem_v1_problem_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetListResponse) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
 func (x *GetListResponse) GetSize() int32 {
 	if x != nil {
 		return x.Size
-	}
-	return 0
-}
-
-func (x *GetListResponse) GetTotal() int32 {
-	if x != nil {
-		return x.Total
 	}
 	return 0
 }
@@ -1494,18 +1470,15 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x05score\x18\x04 \x01(\x05R\x05score\x12\x1c\n" +
 	"\tcreatedBy\x18\x05 \x01(\x04R\tcreatedBy\x12\x1c\n" +
 	"\tupdatedBy\x18\x06 \x01(\x04R\tupdatedBy\x12\x18\n" +
-	"\aenabled\x18\a \x01(\bR\aenabled\"f\n" +
+	"\aenabled\x18\a \x01(\bR\aenabled\"R\n" +
 	"\x0eGetListRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\x05R\x04size\x12\x16\n" +
-	"\x06cursor\x18\x03 \x01(\x04R\x06cursor\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\"\x90\x01\n" +
+	"\x04size\x18\x01 \x01(\x05R\x04size\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\x04R\x06cursor\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\"f\n" +
 	"\x0fGetListResponse\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\x05R\x04size\x12\x14\n" +
-	"\x05total\x18\x03 \x01(\x05R\x05total\x12\x16\n" +
-	"\x06cursor\x18\x04 \x01(\x04R\x06cursor\x12'\n" +
-	"\x04list\x18\x05 \x03(\v2\x13.problem.v1.ProblemR\x04list\"\xb5\x01\n" +
+	"\x04size\x18\x01 \x01(\x05R\x04size\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\x04R\x06cursor\x12'\n" +
+	"\x04list\x18\x03 \x03(\v2\x13.problem.v1.ProblemR\x04list\"\xb5\x01\n" +
 	"\rCreateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x1c\n" +

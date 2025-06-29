@@ -65,18 +65,15 @@ message TestCase {
 }
 
 message GetListRequest {
-    int32 page = 1;
-    int32 size = 2;
-    uint64 cursor = 3;
-    string title = 4;
+    int32 size = 1;
+    uint64 cursor = 2;
+    string title = 3;
 }
 
 message GetListResponse {
-    int32 page = 1;
-    int32 size = 2;
-    int32 total = 3;
-    uint64 cursor = 4;
-    repeated Problem list = 5;
+    int32 size = 1;
+    uint64 cursor = 2;
+    repeated Problem list = 3;
 }
 
 message CreateRequest {

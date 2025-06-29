@@ -1,8 +1,20 @@
 package contestMode
 
-type ContestModeType string
+type ContestModeType int8
 
 const (
-	ACM ContestModeType = "ACM"
-	IOI ContestModeType = "IOI"
+	Unknown ContestModeType = iota
+	ACM
+	IOI
 )
+
+func (c ContestModeType) String() string {
+	switch c {
+	case 1:
+		return "ACM"
+	case 2:
+		return "IOI"
+	default:
+		return "Unknown"
+	}
+}

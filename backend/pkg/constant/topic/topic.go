@@ -10,5 +10,5 @@ type SubmitEvent struct {
 	FilenameWithoutExt string `json:"filenameWithoutExt"`
 	Code               string `json:"code"`
 	Language           string `json:"language"`
-	Mode               string `json:"mode"`
+	Mode               int8   `json:"mode"`
 }

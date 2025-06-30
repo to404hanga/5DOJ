@@ -6,8 +6,8 @@ type ProblemView struct {
 	Id            uint64
 	Title         string
 	Level         int8
-	CreatedBy     uint64
-	UpdatedBy     uint64
+	CreatedBy     string
+	UpdatedBy     string
 	Enabled       bool
 	TimeLimit     int
 	MemoryLimit   int

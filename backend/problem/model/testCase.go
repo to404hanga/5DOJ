@@ -6,8 +6,8 @@ type TestCase struct {
 	Input     string `bson:"input"`
 	Output    string `bson:"output"`
 	Score     int    `bson:"score"`
-	CreatedBy uint64 `bson:"createdBy"`
-	UpdatedBy uint64 `bson:"updatedBy"`
+	CreatedBy string `bson:"createdBy"`
+	UpdatedBy string `bson:"updatedBy"`
 	Enabled   bool   `bson:"enabled"`
 }
 

@@ -25,8 +25,8 @@ message Problem {
     uint64 id = 1;
     string title = 2;
     int32 level = 3;
-    uint64 createdBy = 4;
-    uint64 updatedBy = 5;
+    string createdBy = 4;
+    string updatedBy = 5;
     bool enabled = 6;
     int32 timeLimit = 7;
     int32 memoryLimit = 8;
@@ -59,8 +59,8 @@ message TestCase {
     string input = 2;
     string output = 3;
     int32 score = 4;
-    uint64 createdBy = 5;
-    uint64 updatedBy = 6;
+    string createdBy = 5;
+    string updatedBy = 6;
     bool enabled = 7;
 }
 
@@ -79,7 +79,7 @@ message GetListResponse {
 message CreateRequest {
     string title = 1;
     int32 level = 2;
-    uint64 createdBy = 3;
+    string createdBy = 3;
     int32 timeLimit = 4;
     int32 memoryLimit = 5;
     string markdown = 6;
@@ -93,7 +93,7 @@ message UpdateRequest {
     uint64 id = 1;
     string title = 2;
     int32 level = 3;
-    uint64 updatedBy = 4;
+    string updatedBy = 4;
     int32 timeLimit = 5;
     int32 memoryLimit = 6;
     string markdown = 7;
@@ -105,7 +105,7 @@ message UpdateResponse {
 
 message EnableRequest {
     uint64 id = 1;
-    uint64 updatedBy = 2;
+    string updatedBy = 2;
 }
 
 message EnableResponse {
@@ -114,7 +114,7 @@ message EnableResponse {
 
 message DisableRequest {
     uint64 id = 1;
-    uint64 updatedBy = 2;
+    string updatedBy = 2;
 }
 
 message DisableResponse {
@@ -126,7 +126,7 @@ message AppendTestCaseRequest {
     string input = 2;
     string output = 3;
     int32 score = 4;
-    uint64 createdBy = 5;
+    string createdBy = 5;
 }
 
 message AppendTestCaseResponse {
@@ -140,7 +140,7 @@ message UpdateTestCaseRequest {
     string input = 3;
     string output = 4;
     int32 score = 5;
-    uint64 updatedBy = 6;
+    string updatedBy = 6;
 }
 
 message UpdateTestCaseResponse {
@@ -150,7 +150,7 @@ message UpdateTestCaseResponse {
 message EnableTestCaseRequest {
     uint64 pid = 1;
     string tid = 2;
-    uint64 updatedBy = 3;
+    string updatedBy = 3;
 }
 
 message EnableTestCaseResponse {
@@ -160,7 +160,7 @@ message EnableTestCaseResponse {
 message DisableTestCaseRequest {
     uint64 pid = 1;
     string tid = 2;
-    uint64 updatedBy = 3;
+    string updatedBy = 3;
 }
 
 message DisableTestCaseResponse {

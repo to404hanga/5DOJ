@@ -5,7 +5,7 @@ type TestCaseView struct {
 	Input     string
 	Output    string
 	Score     int
-	CreatedBy uint64
-	UpdatedBy uint64
+	CreatedBy string
+	UpdatedBy string
 	Enabled   bool
 }

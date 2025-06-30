@@ -27,8 +27,8 @@ type Problem struct {
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Level         int32                  `protobuf:"varint,3,opt,name=level,proto3" json:"level,omitempty"`
-	CreatedBy     uint64                 `protobuf:"varint,4,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,5,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	CreatedBy     string                 `protobuf:"bytes,4,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,5,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	Enabled       bool                   `protobuf:"varint,6,opt,name=enabled,proto3" json:"enabled,omitempty"`
 	TimeLimit     int32                  `protobuf:"varint,7,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
 	MemoryLimit   int32                  `protobuf:"varint,8,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
@@ -92,18 +92,18 @@ func (x *Problem) GetLevel() int32 {
 	return 0
 }
 
-func (x *Problem) GetCreatedBy() uint64 {
+func (x *Problem) GetCreatedBy() string {
 	if x != nil {
 		return x.CreatedBy
 	}
-	return 0
+	return ""
 }
 
-func (x *Problem) GetUpdatedBy() uint64 {
+func (x *Problem) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 func (x *Problem) GetEnabled() bool {
@@ -352,8 +352,8 @@ type TestCase struct {
 	Input         string                 `protobuf:"bytes,2,opt,name=input,proto3" json:"input,omitempty"`
 	Output        string                 `protobuf:"bytes,3,opt,name=output,proto3" json:"output,omitempty"`
 	Score         int32                  `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
-	CreatedBy     uint64                 `protobuf:"varint,5,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,6,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	CreatedBy     string                 `protobuf:"bytes,5,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,6,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	Enabled       bool                   `protobuf:"varint,7,opt,name=enabled,proto3" json:"enabled,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -417,18 +417,18 @@ func (x *TestCase) GetScore() int32 {
 	return 0
 }
 
-func (x *TestCase) GetCreatedBy() uint64 {
+func (x *TestCase) GetCreatedBy() string {
 	if x != nil {
 		return x.CreatedBy
 	}
-	return 0
+	return ""
 }
 
-func (x *TestCase) GetUpdatedBy() uint64 {
+func (x *TestCase) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 func (x *TestCase) GetEnabled() bool {
@@ -562,7 +562,7 @@ type CreateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Level         int32                  `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"`
-	CreatedBy     uint64                 `protobuf:"varint,3,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
+	CreatedBy     string                 `protobuf:"bytes,3,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
 	TimeLimit     int32                  `protobuf:"varint,4,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
 	MemoryLimit   int32                  `protobuf:"varint,5,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
 	Markdown      string                 `protobuf:"bytes,6,opt,name=markdown,proto3" json:"markdown,omitempty"`
@@ -614,11 +614,11 @@ func (x *CreateRequest) GetLevel() int32 {
 	return 0
 }
 
-func (x *CreateRequest) GetCreatedBy() uint64 {
+func (x *CreateRequest) GetCreatedBy() string {
 	if x != nil {
 		return x.CreatedBy
 	}
-	return 0
+	return ""
 }
 
 func (x *CreateRequest) GetTimeLimit() int32 {
@@ -691,7 +691,7 @@ type UpdateRequest struct {
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Level         int32                  `protobuf:"varint,3,opt,name=level,proto3" json:"level,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,4,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,4,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	TimeLimit     int32                  `protobuf:"varint,5,opt,name=timeLimit,proto3" json:"timeLimit,omitempty"`
 	MemoryLimit   int32                  `protobuf:"varint,6,opt,name=memoryLimit,proto3" json:"memoryLimit,omitempty"`
 	Markdown      string                 `protobuf:"bytes,7,opt,name=markdown,proto3" json:"markdown,omitempty"`
@@ -750,11 +750,11 @@ func (x *UpdateRequest) GetLevel() int32 {
 	return 0
 }
 
-func (x *UpdateRequest) GetUpdatedBy() uint64 {
+func (x *UpdateRequest) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateRequest) GetTimeLimit() int32 {
@@ -817,7 +817,7 @@ func (*UpdateResponse) Descriptor() ([]byte, []int) {
 type EnableRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,2,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,2,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -859,11 +859,11 @@ func (x *EnableRequest) GetId() uint64 {
 	return 0
 }
 
-func (x *EnableRequest) GetUpdatedBy() uint64 {
+func (x *EnableRequest) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 type EnableResponse struct {
@@ -905,7 +905,7 @@ func (*EnableResponse) Descriptor() ([]byte, []int) {
 type DisableRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,2,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,2,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -947,11 +947,11 @@ func (x *DisableRequest) GetId() uint64 {
 	return 0
 }
 
-func (x *DisableRequest) GetUpdatedBy() uint64 {
+func (x *DisableRequest) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 type DisableResponse struct {
@@ -996,7 +996,7 @@ type AppendTestCaseRequest struct {
 	Input         string                 `protobuf:"bytes,2,opt,name=input,proto3" json:"input,omitempty"`
 	Output        string                 `protobuf:"bytes,3,opt,name=output,proto3" json:"output,omitempty"`
 	Score         int32                  `protobuf:"varint,4,opt,name=score,proto3" json:"score,omitempty"`
-	CreatedBy     uint64                 `protobuf:"varint,5,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
+	CreatedBy     string                 `protobuf:"bytes,5,opt,name=createdBy,proto3" json:"createdBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1059,11 +1059,11 @@ func (x *AppendTestCaseRequest) GetScore() int32 {
 	return 0
 }
 
-func (x *AppendTestCaseRequest) GetCreatedBy() uint64 {
+func (x *AppendTestCaseRequest) GetCreatedBy() string {
 	if x != nil {
 		return x.CreatedBy
 	}
-	return 0
+	return ""
 }
 
 type AppendTestCaseResponse struct {
@@ -1125,7 +1125,7 @@ type UpdateTestCaseRequest struct {
 	Input         string                 `protobuf:"bytes,3,opt,name=input,proto3" json:"input,omitempty"`
 	Output        string                 `protobuf:"bytes,4,opt,name=output,proto3" json:"output,omitempty"`
 	Score         int32                  `protobuf:"varint,5,opt,name=score,proto3" json:"score,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,6,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,6,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1195,11 +1195,11 @@ func (x *UpdateTestCaseRequest) GetScore() int32 {
 	return 0
 }
 
-func (x *UpdateTestCaseRequest) GetUpdatedBy() uint64 {
+func (x *UpdateTestCaseRequest) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 type UpdateTestCaseResponse struct {
@@ -1242,7 +1242,7 @@ type EnableTestCaseRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pid           uint64                 `protobuf:"varint,1,opt,name=pid,proto3" json:"pid,omitempty"`
 	Tid           string                 `protobuf:"bytes,2,opt,name=tid,proto3" json:"tid,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,3,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,3,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1291,11 +1291,11 @@ func (x *EnableTestCaseRequest) GetTid() string {
 	return ""
 }
 
-func (x *EnableTestCaseRequest) GetUpdatedBy() uint64 {
+func (x *EnableTestCaseRequest) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 type EnableTestCaseResponse struct {
@@ -1338,7 +1338,7 @@ type DisableTestCaseRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pid           uint64                 `protobuf:"varint,1,opt,name=pid,proto3" json:"pid,omitempty"`
 	Tid           string                 `protobuf:"bytes,2,opt,name=tid,proto3" json:"tid,omitempty"`
-	UpdatedBy     uint64                 `protobuf:"varint,3,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
+	UpdatedBy     string                 `protobuf:"bytes,3,opt,name=updatedBy,proto3" json:"updatedBy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1387,11 +1387,11 @@ func (x *DisableTestCaseRequest) GetTid() string {
 	return ""
 }
 
-func (x *DisableTestCaseRequest) GetUpdatedBy() uint64 {
+func (x *DisableTestCaseRequest) GetUpdatedBy() string {
 	if x != nil {
 		return x.UpdatedBy
 	}
-	return 0
+	return ""
 }
 
 type DisableTestCaseResponse struct {
@@ -1440,8 +1440,8 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
 	"\x05level\x18\x03 \x01(\x05R\x05level\x12\x1c\n" +
-	"\tcreatedBy\x18\x04 \x01(\x04R\tcreatedBy\x12\x1c\n" +
-	"\tupdatedBy\x18\x05 \x01(\x04R\tupdatedBy\x12\x18\n" +
+	"\tcreatedBy\x18\x04 \x01(\tR\tcreatedBy\x12\x1c\n" +
+	"\tupdatedBy\x18\x05 \x01(\tR\tupdatedBy\x12\x18\n" +
 	"\aenabled\x18\x06 \x01(\bR\aenabled\x12\x1c\n" +
 	"\ttimeLimit\x18\a \x01(\x05R\ttimeLimit\x12 \n" +
 	"\vmemoryLimit\x18\b \x01(\x05R\vmemoryLimit\x12\x1e\n" +
@@ -1468,8 +1468,8 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x05input\x18\x02 \x01(\tR\x05input\x12\x16\n" +
 	"\x06output\x18\x03 \x01(\tR\x06output\x12\x14\n" +
 	"\x05score\x18\x04 \x01(\x05R\x05score\x12\x1c\n" +
-	"\tcreatedBy\x18\x05 \x01(\x04R\tcreatedBy\x12\x1c\n" +
-	"\tupdatedBy\x18\x06 \x01(\x04R\tupdatedBy\x12\x18\n" +
+	"\tcreatedBy\x18\x05 \x01(\tR\tcreatedBy\x12\x1c\n" +
+	"\tupdatedBy\x18\x06 \x01(\tR\tupdatedBy\x12\x18\n" +
 	"\aenabled\x18\a \x01(\bR\aenabled\"R\n" +
 	"\x0eGetListRequest\x12\x12\n" +
 	"\x04size\x18\x01 \x01(\x05R\x04size\x12\x16\n" +
@@ -1482,7 +1482,7 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\rCreateRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x1c\n" +
-	"\tcreatedBy\x18\x03 \x01(\x04R\tcreatedBy\x12\x1c\n" +
+	"\tcreatedBy\x18\x03 \x01(\tR\tcreatedBy\x12\x1c\n" +
 	"\ttimeLimit\x18\x04 \x01(\x05R\ttimeLimit\x12 \n" +
 	"\vmemoryLimit\x18\x05 \x01(\x05R\vmemoryLimit\x12\x1a\n" +
 	"\bmarkdown\x18\x06 \x01(\tR\bmarkdown\" \n" +
@@ -1492,25 +1492,25 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
 	"\x05level\x18\x03 \x01(\x05R\x05level\x12\x1c\n" +
-	"\tupdatedBy\x18\x04 \x01(\x04R\tupdatedBy\x12\x1c\n" +
+	"\tupdatedBy\x18\x04 \x01(\tR\tupdatedBy\x12\x1c\n" +
 	"\ttimeLimit\x18\x05 \x01(\x05R\ttimeLimit\x12 \n" +
 	"\vmemoryLimit\x18\x06 \x01(\x05R\vmemoryLimit\x12\x1a\n" +
 	"\bmarkdown\x18\a \x01(\tR\bmarkdown\"\x10\n" +
 	"\x0eUpdateResponse\"=\n" +
 	"\rEnableRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1c\n" +
-	"\tupdatedBy\x18\x02 \x01(\x04R\tupdatedBy\"\x10\n" +
+	"\tupdatedBy\x18\x02 \x01(\tR\tupdatedBy\"\x10\n" +
 	"\x0eEnableResponse\">\n" +
 	"\x0eDisableRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1c\n" +
-	"\tupdatedBy\x18\x02 \x01(\x04R\tupdatedBy\"\x11\n" +
+	"\tupdatedBy\x18\x02 \x01(\tR\tupdatedBy\"\x11\n" +
 	"\x0fDisableResponse\"\x89\x01\n" +
 	"\x15AppendTestCaseRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x14\n" +
 	"\x05input\x18\x02 \x01(\tR\x05input\x12\x16\n" +
 	"\x06output\x18\x03 \x01(\tR\x06output\x12\x14\n" +
 	"\x05score\x18\x04 \x01(\x05R\x05score\x12\x1c\n" +
-	"\tcreatedBy\x18\x05 \x01(\x04R\tcreatedBy\"<\n" +
+	"\tcreatedBy\x18\x05 \x01(\tR\tcreatedBy\"<\n" +
 	"\x16AppendTestCaseResponse\x12\x10\n" +
 	"\x03pid\x18\x01 \x01(\x04R\x03pid\x12\x10\n" +
 	"\x03tid\x18\x02 \x01(\tR\x03tid\"\x9d\x01\n" +
@@ -1520,17 +1520,17 @@ const file_problem_v1_problem_proto_rawDesc = "" +
 	"\x05input\x18\x03 \x01(\tR\x05input\x12\x16\n" +
 	"\x06output\x18\x04 \x01(\tR\x06output\x12\x14\n" +
 	"\x05score\x18\x05 \x01(\x05R\x05score\x12\x1c\n" +
-	"\tupdatedBy\x18\x06 \x01(\x04R\tupdatedBy\"\x18\n" +
+	"\tupdatedBy\x18\x06 \x01(\tR\tupdatedBy\"\x18\n" +
 	"\x16UpdateTestCaseResponse\"Y\n" +
 	"\x15EnableTestCaseRequest\x12\x10\n" +
 	"\x03pid\x18\x01 \x01(\x04R\x03pid\x12\x10\n" +
 	"\x03tid\x18\x02 \x01(\tR\x03tid\x12\x1c\n" +
-	"\tupdatedBy\x18\x03 \x01(\x04R\tupdatedBy\"\x18\n" +
+	"\tupdatedBy\x18\x03 \x01(\tR\tupdatedBy\"\x18\n" +
 	"\x16EnableTestCaseResponse\"Z\n" +
 	"\x16DisableTestCaseRequest\x12\x10\n" +
 	"\x03pid\x18\x01 \x01(\x04R\x03pid\x12\x10\n" +
 	"\x03tid\x18\x02 \x01(\tR\x03tid\x12\x1c\n" +
-	"\tupdatedBy\x18\x03 \x01(\x04R\tupdatedBy\"\x19\n" +
+	"\tupdatedBy\x18\x03 \x01(\tR\tupdatedBy\"\x19\n" +
 	"\x17DisableTestCaseResponse2\xd6\x06\n" +
 	"\x0eProblemService\x126\n" +
 	"\x03Get\x12\x16.problem.v1.GetRequest\x1a\x17.problem.v1.GetResponse\x12Z\n" +

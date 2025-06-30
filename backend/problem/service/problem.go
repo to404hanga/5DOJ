@@ -152,7 +152,7 @@ func (p *ProblemService) GetList(ctx context.Context, size int, cursorIn uint64,
 	return
 }
 
-func (p *ProblemService) Create(ctx context.Context, title string, level int, createdBy uint64, timeLimit, memoryLimit int, markdown string) (pid uint64, err error) {
+func (p *ProblemService) Create(ctx context.Context, title string, level int, createdBy string, timeLimit, memoryLimit int, markdown string) (pid uint64, err error) {
 	// eg := &errgroup.Group{}
 	// txSQL := global.MySQL.WithContext(ctx).Begin()
 	// var sess mongo.Session
@@ -253,7 +253,7 @@ func (p *ProblemService) Create(ctx context.Context, title string, level int, cr
 	return
 }
 
-func (p *ProblemService) Update(ctx context.Context, pid uint64, title string, level int, updatedBy uint64, timeLimit, memoryLimit int, markdown string) (err error) {
+func (p *ProblemService) Update(ctx context.Context, pid uint64, title string, level int, updatedBy string, timeLimit, memoryLimit int, markdown string) (err error) {
 	// eg := &errgroup.Group{}
 	// txSQL := global.MySQL.WithContext(ctx).Begin()
 	// var sess mongo.Session
@@ -381,7 +381,7 @@ func (p *ProblemService) Update(ctx context.Context, pid uint64, title string, l
 	return
 }
 
-func (p *ProblemService) Enable(ctx context.Context, pid, updatedBy uint64) (err error) {
+func (p *ProblemService) Enable(ctx context.Context, pid uint64, updatedBy string) (err error) {
 	return global.MySQL.WithContext(ctx).Model(&model.ProblemInfo{}).
 		Where("id = ?", pid).
 		Updates(map[string]any{
@@ -390,7 +390,7 @@ func (p *ProblemService) Enable(ctx context.Context, pid, updatedBy uint64) (err
 		}).Error
 }
 
-func (p *ProblemService) Disable(ctx context.Context, pid, updatedBy uint64) (err error) {
+func (p *ProblemService) Disable(ctx context.Context, pid uint64, updatedBy string) (err error) {
 	return global.MySQL.WithContext(ctx).Model(&model.ProblemInfo{}).
 		Where("id = ?", pid).
 		Updates(map[string]any{
@@ -399,7 +399,7 @@ func (p *ProblemService) Disable(ctx context.Context, pid, updatedBy uint64) (er
 		}).Error
 }
 
-func (p *ProblemService) AppendTestCase(ctx context.Context, pid uint64, input, output string, score int, createdBy uint64) (tid string, err error) {
+func (p *ProblemService) AppendTestCase(ctx context.Context, pid uint64, input, output string, score int, createdBy string) (tid string, err error) {
 	prepare := func() bool {
 		return false
 	}
@@ -426,7 +426,7 @@ func (p *ProblemService) AppendTestCase(ctx context.Context, pid uint64, input, 
 	return
 }
 
-func (p *ProblemService) UpdateTestCase(ctx context.Context, pid uint64, tid, input, output string, score int, updatedBy uint64) (err error) {
+func (p *ProblemService) UpdateTestCase(ctx context.Context, pid uint64, tid, input, output string, score int, updatedBy string) (err error) {
 	var old model.TestCase
 	prepare := func() bool {
 		if score > 0 {
@@ -487,7 +487,7 @@ func (p *ProblemService) UpdateTestCase(ctx context.Context, pid uint64, tid, in
 	return
 }
 
-func (p *ProblemService) EnableTestCase(ctx context.Context, pid uint64, tid string, updatedBy uint64) (err error) {
+func (p *ProblemService) EnableTestCase(ctx context.Context, pid uint64, tid, updatedBy string) (err error) {
 	var old model.TestCase
 	// 原本为启用状态的用例，不重复启用
 	prepare := func() bool {
@@ -530,7 +530,7 @@ func (p *ProblemService) EnableTestCase(ctx context.Context, pid uint64, tid str
 	return
 }
 
-func (p *ProblemService) DisableTestCase(ctx context.Context, pid uint64, tid string, updatedBy uint64) (err error) {
+func (p *ProblemService) DisableTestCase(ctx context.Context, pid uint64, tid, updatedBy string) (err error) {
 	var old model.TestCase
 	// 原本为禁用状态的用例，不重复禁用
 	prepare := func() bool {

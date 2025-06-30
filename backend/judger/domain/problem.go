@@ -8,9 +8,10 @@ type TestCase struct {
 }
 
 type Problem struct {
-	ProblemId    uint64     `json:"problemId"`
-	TestCases    []TestCase `json:"testCases"`
-	TotalScore   int        `json:"totalScore"`
-	TimeLimitNS  uint64     `json:"timeLimitNS"`
-	MemoryLimitB uint64     `json:"memoryLimitB"`
+	ProblemId     uint64     `json:"problemId"`
+	TestCases     []TestCase `json:"testCases"`
+	TotalTestCase int        `json:"totalTestCase"`
+	TotalScore    int        `json:"totalScore"`
+	TimeLimitNS   uint64     `json:"timeLimitNS"`
+	MemoryLimitB  uint64     `json:"memoryLimitB"`
 }
